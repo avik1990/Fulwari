@@ -76,7 +76,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:singleLine="true"
-                    android:text="MBazaar"
+                    android:text="Fulwali"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
@@ -135,7 +135,7 @@
                         android:layout_marginRight="@dimen/_8sdp"
                         android:src="@drawable/basket" />
 
-                    <com.app.mbazzar.utils.CircularTextView
+                    <com.app.Fulwali.utils.CircularTextView
                         android:id="@+id/tv_cartcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
         <item
             android:id="@+id/nav_aboutus"
             android:icon="@drawable/ic_info_black_24dp"
-            android:title="About MBazaar" />
+            android:title="About Fulwali" />
 
         <item
             android:id="@+id/nav_feedback"

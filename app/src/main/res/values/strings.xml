@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">MBazaar</string>
+    <string name="app_name">Fulwali</string>
     <string name="no_internet_msg">No Internet Connection</string>
 
     <string name="base_url">http://www.mbazaaronline.co.in/webservice/</string>
 
-    <string name="share_pkg" translatable="false">MBazaar \n Download now.\n\nhttps://play.google.com/store/apps/details?id= </string>
+    <string name="share_pkg" translatable="false">Fulwali \n Download now.\n\nhttps://play.google.com/store/apps/details?id= </string>
     <string name="green_color">#e41b23</string>
     <string name="telnumber">tel:+91 8906652786</string>
     <string-array name="array">
