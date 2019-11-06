@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#84C225</color>
-    <color name="colorPrimaryDark">#537E2C</color>
-    <color name="colorAccent">#84C225</color>
+    <color name="colorPrimary">#00A554</color>
+    <color name="colorPrimaryDark">#017B3C</color>
+    <color name="colorAccent">#00A554</color>
 
-    <color name="green">#689F39</color>
+    <color name="green">#00A554</color>
     <color name="gray">#EEEEEE</color>
     <color name="gray_divider">#888888</color>
     <color name="yellow">#FF9F00</color>
