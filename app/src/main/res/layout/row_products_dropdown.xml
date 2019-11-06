@@ -305,6 +305,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
                 android:text="JHON DOE"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp" />
@@ -314,7 +315,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="end"
                 android:src="@drawable/ic_arrow_drop_down_black_24dp"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </LinearLayout>
 
 

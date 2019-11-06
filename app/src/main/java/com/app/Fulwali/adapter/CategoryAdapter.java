@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.Fulwali.ProductPage;
 import com.app.Fulwali.SubCategoryPage;
 import com.app.Fulwali.R;
 import com.app.Fulwali.model.Category;
@@ -46,6 +47,25 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             tv_categoryname = view.findViewById(R.id.tv_categoryname);
             progressbar = view.findViewById(R.id.progressbar);
             card_view = view.findViewById(R.id.card_view);
+
+            card_view.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Preferences.set_dashCatId(mContext, countryList.get(getAdapterPosition()).getCategoryId());
+                   /* Intent i = new Intent(mContext, SubCategoryPage.class);
+                    i.putExtra("from", holder.tv_categoryname.getText().toString().trim());
+                    i.putExtra("cat_id", countryList.get(position).getCategoryId());
+                    mContext.startActivity(i);*/
+
+                    Intent a = new Intent(mContext, ProductPage.class);
+                    // a.putExtra("position", "" + pos);
+                    a.putExtra("category_id", countryList.get(getAdapterPosition()).getCategoryId());
+                    a.putExtra("from",countryList.get(getAdapterPosition()).categoryName);
+                    a.putExtra("sub_category_id","0");
+                    mContext.startActivity(a);
+                }
+            });
         }
     }
 
@@ -78,17 +98,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
 
 
-        holder.card_view.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Preferences.set_dashCatId(mContext, countryList.get(position).getCategoryId());
-                Intent i = new Intent(mContext, SubCategoryPage.class);
-                i.putExtra("from", holder.tv_categoryname.getText().toString().trim());
-                i.putExtra("cat_id", countryList.get(position).getCategoryId());
-                mContext.startActivity(i);
-            }
-        });
 
     }
 

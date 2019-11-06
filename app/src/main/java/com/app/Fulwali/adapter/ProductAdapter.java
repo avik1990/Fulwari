@@ -125,7 +125,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.iv_chefimage.setVisibility(View.VISIBLE);
         // holder.tv_productdetails.setText("dsfsdfsdfsdfsd");
 
-        if (!c.getBrand().isEmpty()) {
+        if (c.getBrand()!=null && !c.getBrand().isEmpty()) {
             holder.tv_productdetails.setVisibility(View.VISIBLE);
             holder.tv_productdetails.setText(c.getBrand());
         } else {
@@ -187,7 +187,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 holder.sp_packets.setText(c.getPackets().get(c.getSelectedPos()).getPacketSize());
                 holder.tv_price_orginal.setText(c.getPackets().get(c.getSelectedPos()).getOriginalPrice());
 
-                if (!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
+                if (c.getPackets().get(c.getSelectedPos()).getDiscount()!=null &&!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(c.getSelectedPos()).getDiscount() + " off");
@@ -199,7 +199,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     holder.tv_price_discount.setVisibility(View.GONE);
                 }
 
-                holder.sp_packets.setOnClickListener(new View.OnClickListener() {
+               /* holder.sp_packets.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -234,7 +234,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                         });
                         builder.show();
                     }
-                });
+                });*/
             } else {
                 ///if any item is not checked from dropdown by default first item is default is selected
                 holder.sp_packets.setText(c.getPackets().get(0).getPacketSize());

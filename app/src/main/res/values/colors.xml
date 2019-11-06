@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00A554</color>
-    <color name="colorPrimaryDark">#017B3C</color>
-    <color name="colorAccent">#00A554</color>
+    <color name="colorPrimary">#00A651</color>
+    <color name="colorPrimaryDark">#019147</color>
+    <color name="colorAccent">#00A651</color>
 
-    <color name="green">#00A554</color>
+    <color name="green">#00A651</color>
     <color name="gray">#EEEEEE</color>
     <color name="gray_divider">#888888</color>
-    <color name="yellow">#FF9F00</color>
+    <color name="yellow">#f8f200</color>
     <color name="orange">#FB641B</color>
 
     <color name="welcome_bg">#fe4148</color>

@@ -86,7 +86,7 @@ public interface ApiServices {
     Call<Banners> GetBanners();
 
     @GET("service.php?action=subcategory")
-    Call<SubCategoryDataResponse> GeSubCategoryDataResponse(@Query("category_id") String category_id);
+    Call<SubCategoryDataResponse>   GeSubCategoryDataResponse(@Query("category_id") String category_id);
 
     @GET("service.php?action=product_list")
     Call<ProductList> GetProductListResponse(@Query("category_id") String category_id, @Query("subcategory_id") String subcategory_id, @Query("user_id") String user_id, @Query("unique_id") String unique_id);
