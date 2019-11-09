@@ -216,16 +216,9 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setData() {
-        // tv_brand.setText(ProductPage.productModel.getProductData().get(position).getBrand());
-        if (!ProductPage.productModel.getProductData().get(position).getBrand().isEmpty()) {
-            tv_brand.setVisibility(View.VISIBLE);
-            tv_brand.setText(ProductPage.productModel.getProductData().get(position).getBrand());
-
-        } else {
             tv_brand.setVisibility(View.GONE);
-        }
 
-        tv_title.setText(ProductPage.productModel.getProductData().get(position).getProductNameEnglish() + " / " + ProductPage.productModel.getProductData().get(position).getProductNameBengali());
+        tv_title.setText(ProductPage.productModel.getProductData().get(position).getProductNameEnglish() );
         tv_desc.setVisibility(View.GONE);
         tv_desc.setText(ProductPage.productModel.getProductData().get(position).getProductDetails());
         product_id = ProductPage.productModel.getProductData().get(position).getProductId();
@@ -406,6 +399,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                     }
                     if (amount > 0) {
                         amount -= 1;
+                        et_qty.setText(String.valueOf(amount));
                     }
                     if (amount == 0) {
                         amount = 1;

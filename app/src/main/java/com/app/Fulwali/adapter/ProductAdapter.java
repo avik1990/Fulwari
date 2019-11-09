@@ -119,18 +119,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final ProductList.ProductDatum c = countryList.get(position);
-        holder.tv_productname.setText(c.getProductNameEnglish() + " / " + c.getProductNameBengali());
+        holder.tv_productname.setText(c.getProductNameEnglish());
         holder.progressbar.setVisibility(View.VISIBLE);
         holder.tv_position.setText(String.valueOf(position));
         holder.iv_chefimage.setVisibility(View.VISIBLE);
         // holder.tv_productdetails.setText("dsfsdfsdfsdfsd");
 
-        if (c.getBrand()!=null && !c.getBrand().isEmpty()) {
-            holder.tv_productdetails.setVisibility(View.VISIBLE);
-            holder.tv_productdetails.setText(c.getBrand());
-        } else {
             holder.tv_productdetails.setVisibility(View.GONE);
-        }
 
 
         holder.ll_mainbody.setOnClickListener(new View.OnClickListener() {
@@ -252,42 +247,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     holder.tv_price_discount.setVisibility(View.GONE);
                 }
 
-                holder.sp_packets.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-
-                        String packetSize[] = new String[c.getPackets().size()];
-                        for (int i = 0; i < c.getPackets().size(); i++) {
-                            packetSize[i] = c.getPackets().get(i).getPacketSize();
-                        }
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                        builder.setTitle(c.getProductNameEnglish())
-                                .setItems(packetSize, new DialogInterface.OnClickListener() {
-
-                                    public void onClick(DialogInterface dialog, int pos) {
-                                        holder.sp_packets.setText(c.getPackets().get(pos).getPacketSize());
-                                        c.setSelectedPos(pos);
-                                        if (!c.getPackets().get(pos).getDiscount().equals("0%")) {
-                                            holder.tv_dis_percent.setVisibility(View.VISIBLE);
-                                            holder.tv_dis_percent.setText(" " + c.getPackets().get(pos).getDiscount());
-                                            holder.tv_price_orginal.setText(c.getPackets().get(pos).getOriginalPrice());
-                                            holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                                            holder.tv_price_discount.setVisibility(View.VISIBLE);
-                                            holder.tv_price_discount.setText(c.getPackets().get(pos).getPrice());
-                                        } else {
-                                            holder.tv_price_orginal.setText(c.getPackets().get(pos).getOriginalPrice());
-                                            holder.tv_price_orginal.setPaintFlags(0);
-                                            holder.tv_dis_percent.setVisibility(View.GONE);
-                                            holder.tv_price_discount.setVisibility(View.GONE);
-                                        }
-                                    }
-                                });
-
-                        builder.show();
-                    }
-                });
             }
         } else {
             holder.fl_layout.setVisibility(View.GONE);

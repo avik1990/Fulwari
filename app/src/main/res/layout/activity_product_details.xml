@@ -182,6 +182,7 @@
             android:textColor="@color/white" />
 
         <RelativeLayout
+            android:background="@color/orange"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -198,19 +199,21 @@
                 android:visibility="visible" />
 
             <LinearLayout
+                android:background="@color/orange"
                 android:id="@+id/ll_cart_quantity"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/ll_parent"
                 android:layout_centerHorizontal="true"
-                android:gravity="center_vertical"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:padding="@dimen/_12sdp"
                     android:id="@+id/iv_sub"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_minus_org" />
+                    android:src="@drawable/substract" />
 
                 <TextView
                     android:id="@+id/et_qty"
@@ -220,15 +223,16 @@
                     android:inputType="number"
                     android:text="1"
                     android:textSize="@dimen/_14sdp"
-                    android:textColor="@color/orange"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
 
                 <ImageView
+                    android:padding="@dimen/_12sdp"
                     android:id="@+id/iv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_plus_org" />
+                    android:src="@drawable/plus_symbol" />
             </LinearLayout>
         </RelativeLayout>
 

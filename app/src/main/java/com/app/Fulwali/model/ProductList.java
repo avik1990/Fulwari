@@ -126,9 +126,9 @@ public class ProductList {
         @SerializedName("product_details")
         @Expose
         private String productDetails;
-        @SerializedName("brand")
+      /*  @SerializedName("brand")
         @Expose
-        private String brand;
+        private String brand;*/
         @SerializedName("product_photo")
         @Expose
         private String productPhoto;
@@ -139,13 +139,13 @@ public class ProductList {
         private boolean isClicked = false;
         private int selectedPos = -1;
 
-        public String getBrand() {
-            return brand;
-        }
-
-        public void setBrand(String brand) {
-            this.brand = brand;
-        }
+//        public String getBrand() {
+//            return brand;
+//        }
+//
+//        public void setBrand(String brand) {
+//            this.brand = brand;
+//        }
 
         public boolean isClicked() {
             return isClicked;

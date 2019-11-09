@@ -397,6 +397,7 @@
                     android:visibility="gone" />
 
                 <LinearLayout
+                    android:background="@color/orange"
                     android:id="@+id/ll_cart_quantity"
                     android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -406,10 +407,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:padding="@dimen/_8sdp"
                         android:id="@+id/iv_sub"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/ic_minus_org" />
+                        android:src="@drawable/substract" />
 
                     <TextView
                         android:id="@+id/et_qty"
@@ -418,16 +420,17 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:text="1"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold" />
 
 
                     <ImageView
+                        android:padding="@dimen/_8sdp"
                         android:id="@+id/iv_add"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/ic_plus_org" />
+                        android:src="@drawable/plus_symbol" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
