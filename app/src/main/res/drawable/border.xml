@@ -2,6 +2,6 @@
     android:shape="rectangle" >
     <!-- This is the stroke you want to define -->
     <stroke android:width="1px"
-        android:color="@color/black"/>
+        android:color="@color/lightgrey"/>
 
 </shape>

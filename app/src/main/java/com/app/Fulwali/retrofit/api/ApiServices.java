@@ -158,7 +158,8 @@ public interface ApiServices {
 
 
     @GET("service.php?action=checkout")
-    Call<CartDeleteAction> PostShipping(@Query("fname") String fname, @Query("lname") String lname, @Query("email") String email, @Query("phone") String phone
+    Call<CartDeleteAction>
+    PostShipping(@Query("fname") String fname, @Query("lname") String lname, @Query("email") String email, @Query("phone") String phone
             , @Query("address") String address
             , @Query("city") String city
             , @Query("state") String state

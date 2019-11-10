@@ -195,6 +195,7 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
         String BASE_URL = getResources().getString(R.string.base_url);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
