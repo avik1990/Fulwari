@@ -356,7 +356,7 @@
                         android:textColor="@color/col_producttitle"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold"
-                        android:visibility="gone" />
+                            android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/tv_price_orginal"

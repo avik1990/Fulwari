@@ -180,14 +180,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             ///if any item is checked from dropdown
             if (c.getSelectedPos() != -1) {
                 holder.sp_packets.setText(c.getPackets().get(c.getSelectedPos()).getPacketSize());
-                holder.tv_price_orginal.setText(c.getPackets().get(c.getSelectedPos()).getOriginalPrice());
+                holder.tv_price_orginal.setText("\u20B9"+c.getPackets().get(c.getSelectedPos()).getOriginalPrice());
 
                 if (c.getPackets().get(c.getSelectedPos()).getDiscount()!=null &&!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(c.getSelectedPos()).getDiscount() + " off");
                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                    holder.tv_price_discount.setText(c.getPackets().get(c.getSelectedPos()).getPrice());
+                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(c.getSelectedPos()).getPrice());
                 } else {
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);
@@ -218,9 +218,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                                     holder.tv_price_orginal.setText(c.getPackets().get(pos).getOriginalPrice());
                                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                                    holder.tv_price_discount.setText(c.getPackets().get(pos).getPrice());
+                                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(pos).getPrice());
                                 } else {
-                                    holder.tv_price_orginal.setText(c.getPackets().get(pos).getOriginalPrice());
+                                    holder.tv_price_orginal.setText("\u20B9"+c.getPackets().get(pos).getOriginalPrice());
                                     holder.tv_price_orginal.setPaintFlags(0);
                                     holder.tv_dis_percent.setVisibility(View.GONE);
                                     holder.tv_price_discount.setVisibility(View.GONE);
@@ -240,7 +240,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(0).getDiscount());
                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                    holder.tv_price_discount.setText(c.getPackets().get(0).getPrice());
+                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(0).getPrice());
                 } else {
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);

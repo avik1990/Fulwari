@@ -261,9 +261,9 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                 TextView tv_discount_percent = view2.findViewById(R.id.tv_discount_percent);
                 TextView tv_orginal_price = view2.findViewById(R.id.tv_orginal_price);
 
-                tv_offered_price.setText(ProductPage.productModel.getProductData().get(position).getPackets().get(i).getPrice());
+                tv_offered_price.setText("\u20B9"+ProductPage.productModel.getProductData().get(position).getPackets().get(i).getPrice());
                 tv_discount_percent.setText(ProductPage.productModel.getProductData().get(position).getPackets().get(i).getDiscount() + " off");
-                tv_orginal_price.setText(ProductPage.productModel.getProductData().get(position).getPackets().get(i).getOriginalPrice());
+                tv_orginal_price.setText("\u20B9"+ProductPage.productModel.getProductData().get(position).getPackets().get(i).getOriginalPrice());
                 tv_orginal_price.setPaintFlags(tv_orginal_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                 tv_cat.setTextColor(Color.parseColor("#585858"));

@@ -212,7 +212,7 @@ public class ProductCart extends AppCompatActivity implements View.OnClickListen
         rl_cart.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
-        tv_totalprice.setText("\u20A8" + ". " + myCart.getPriceData().totalPrice);
+        tv_totalprice.setText("\u20B9" + " " + myCart.getPriceData().totalPrice);
         tv_servicetax.setText(myCart.getPriceData().total_quantity);
 
         if (Double.parseDouble(myCart.getPriceData().totalPrice) >= 150) {
@@ -221,10 +221,10 @@ public class ProductCart extends AppCompatActivity implements View.OnClickListen
         } else {
             tv_taxpercentage.setVisibility(View.VISIBLE);
             tv_delivery.setVisibility(View.VISIBLE);
-            tv_taxpercentage.setText("\u20A8" + ". " + myCart.getPriceData().delivery_charge);
+            tv_taxpercentage.setText("\u20B9" + " " + myCart.getPriceData().delivery_charge);
         }
 
-        tv_grandtotdal.setText("\u20A8" + ". " + myCart.getPriceData().grand_total);
+        tv_grandtotdal.setText("\u20B9" + " " + myCart.getPriceData().grand_total);
         footer.setVisibility(View.VISIBLE);
 
         cb_quickdelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -233,10 +233,10 @@ public class ProductCart extends AppCompatActivity implements View.OnClickListen
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     isQuickDelivery = "1";
-                    tv_grandtotdal.setText("\u20A8" + ". " + (Double.parseDouble(myCart.getPriceData().grand_total) + 10.00));
+                    tv_grandtotdal.setText("\u20B9" + " " + (Double.parseDouble(myCart.getPriceData().grand_total) + 10.00));
                 } else {
                     isQuickDelivery = "0";
-                    tv_grandtotdal.setText("\u20A8" + ". " + myCart.getPriceData().grand_total);
+                    tv_grandtotdal.setText("\u20A8" + " " + myCart.getPriceData().grand_total);
                 }
             }
         });

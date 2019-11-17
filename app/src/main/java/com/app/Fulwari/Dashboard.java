@@ -530,7 +530,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                     myCart = response.body();
                     if (myCart.getAck().equals("1")) {
                         tv_cartprice.setVisibility(View.VISIBLE);
-                        tv_cartprice.setText("Total Price " + "\u20A8" + ". " + myCart.getPriceData().grand_total);
+                        tv_cartprice.setText("Total Price " + "\u20B9" + " " + myCart.getPriceData().grand_total);
                     } else {
                         tv_cartprice.setVisibility(View.GONE);
                     }

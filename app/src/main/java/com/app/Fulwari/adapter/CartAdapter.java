@@ -109,14 +109,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.et_qty.setText(String.valueOf(movie.quantity));
 
         holder.tv_packetsize.setText(movie.packetSize);
-        holder.tv_unitprice.setText("\u20A8" + ". " + String.valueOf(movie.unitPrice));
+        holder.tv_unitprice.setText("\u20B9" + " " + String.valueOf(movie.unitPrice));
         //holder.tv_quantity.setText("Packet      : " + String.valueOf(movie.quantity) + " Pc(s)");
         if (movie.discount!=null&& !movie.discount.equalsIgnoreCase("0")) {
             holder.tv_price.setVisibility(View.VISIBLE);
             holder.tv_discount.setVisibility(View.VISIBLE);
             //holder.tv_price.setText("\u20B9" + " " + movie.original_price + " " + movie.discount + " off");
             holder.tv_discount.setText(movie.discount + "% off");
-            holder.tv_price.setText("\u20A8" + ". " + movie.original_price);
+            holder.tv_price.setText("\u20B9" + " " + movie.original_price);
             holder.tv_price.setPaintFlags(holder.tv_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             holder.tv_price.setVisibility(View.GONE);

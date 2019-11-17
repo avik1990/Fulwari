@@ -40,6 +40,18 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_contactnperson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:text="Contact Person : Santosh Ojha"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,17 +104,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
-            <TextView
-                android:id="@+id/tv_contactnperson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:drawablePadding="@dimen/_5sdp"
-                android:text="Contact Person : Proloy Biswas"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp" />
+
         </LinearLayout>
 
     </ScrollView>
