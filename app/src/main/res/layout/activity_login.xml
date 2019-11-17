@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.app.Fulwali.LoginActivity">
+    tools:context="com.app.Fulwari.LoginActivity">
 
     <RelativeLayout
         android:id="@+id/logoview"
@@ -28,7 +28,7 @@
             android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Login to Access Your Account"
+            android:text="Login To Access Your Account"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

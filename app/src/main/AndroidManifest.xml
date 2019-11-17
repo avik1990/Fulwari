@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.Fulwali">
+    package="com.app.Fulwari">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.app.Fulwali.SplashActivity"
+            android:name="com.app.Fulwari.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan">
@@ -29,130 +29,130 @@
         </activity>
 
         <activity
-            android:name="com.app.Fulwali.LoginActivity"
+            android:name="com.app.Fulwari.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.app.Fulwali.RegisterActivity"
+            android:name="com.app.Fulwari.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.app.Fulwali.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-
-        <activity
-            android:name="com.app.Fulwali.Dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.model.MyProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.SubCategoryPage"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.ProductDetails"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.AboutUs"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.TermsCondition"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.Privacy"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.ProductCart"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.Shippingactivity"
+            android:name="com.app.Fulwari.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+
         <activity
-            android:name="com.app.Fulwali.OrderCancellation"
+            android:name="com.app.Fulwari.Dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.model.MyProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.SubCategoryPage"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.ProductDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.AboutUs"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.TermsCondition"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.Privacy"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.ProductCart"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.Shippingactivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.app.Fulwali.Replacement"
+            android:name="com.app.Fulwari.OrderCancellation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.app.Fulwali.Refund"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.Feedbackactivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.ContactUs"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name="com.app.Fulwali.SearchedProductPage"
+            android:name="com.app.Fulwari.Replacement"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.app.Fulwali.ProductPage"
+            android:name="com.app.Fulwari.Refund"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.app.Fulwali.ChangePasswordActivity"
+            android:name="com.app.Fulwari.Feedbackactivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.app.Fulwali.ShippingContent"
+            android:name="com.app.Fulwari.ContactUs"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.app.Fulwali.OTPActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.app.Fulwali.MyOrderActivity"
+            android:name="com.app.Fulwari.SearchedProductPage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name="com.app.Fulwali.ProductOrderDetails"
+            android:name="com.app.Fulwari.ProductPage"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.ChangePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.ShippingContent"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.app.Fulwari.OTPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.app.Fulwari.MyOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.app.Fulwari.ProductOrderDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoTranslucent"
             android:windowSoftInputMode="stateHidden|adjustPan" />

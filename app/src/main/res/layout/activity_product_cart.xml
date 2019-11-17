@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.Fulwali.ProductDetails">
+    tools:context="com.app.Fulwari.ProductDetails">
 
     <include
         android:id="@+id/toolbar"
@@ -133,6 +133,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <CheckBox

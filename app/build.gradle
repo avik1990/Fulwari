@@ -3,11 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.app.Fulwali"
+        applicationId "com.app.Fulwari"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 3
-        versionName "1.2"
+        versionName "1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
        // ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
     }
