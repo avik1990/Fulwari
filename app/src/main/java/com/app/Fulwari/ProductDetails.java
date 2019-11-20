@@ -385,8 +385,6 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                 Utility.showToastShort(mContext, "Please select pack size");
                 return;
             }
-
-
             if (cd.isConnected()) {
                 if (iv_sub.isPressed()) {
                     if (et_qty.getText().toString().equals("1")) {
