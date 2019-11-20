@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"
-            android:text="My Profile"
+            android:text="Edit Profile"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

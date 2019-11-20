@@ -106,7 +106,7 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
 
     private void setData() {
         tv_address.setText("Address : " + aboutUs.getContactData().getAddress());
-        tv_email.setText("Email Address : " + aboutUs.getContactData().getEmail());
+        tv_email.setText("Email : " + aboutUs.getContactData().getEmail());
         tv_contactno1.setText("Contact No. 1 : " + aboutUs.getContactData().getContactNo1());
         tv_contactno2.setText("Contact No. 2 : " +aboutUs.getContactData().getContactNo2());
         tv_whatsapp.setText("Whatsapp No : " +aboutUs.getContactData().getWhatsappNo());
