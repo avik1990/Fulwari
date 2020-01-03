@@ -395,6 +395,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
+        Log.e("Log==",isCartAdd);
 
         Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext), product_id, packet_id, "1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
