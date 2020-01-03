@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlowerCustomDetails">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:padding="@dimen/_8sdp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+       >
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_back"
+            android:src="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FlowerPack"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/_14sdp"
+            android:id="@+id/et_name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="@dimen/_4sdp"
+        android:weightSum="8"
+        android:id="@+id/topbar_ll"
+        android:layout_below="@+id/topbar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/orange"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:text="Product Name"/>
+        <TextView
+            android:layout_width="0dp"
+            android:textSize="@dimen/_10sdp"
+
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Sun"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Mon"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Tue"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Wed"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Thu"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Fri"/>
+        <TextView
+            android:textSize="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Sat"/>
+
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/topbar_ll"
+        android:id="@+id/rv_customizeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp" />
+</RelativeLayout>

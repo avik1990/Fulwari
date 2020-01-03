@@ -8,12 +8,15 @@ import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.CartDeleteAction;
 import com.app.Fulwari.model.Category;
 import com.app.Fulwari.model.ContactUsModel;
+import com.app.Fulwari.model.FlowerProductBean;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.MyOrders;
 import com.app.Fulwari.model.MyOrdersDetailsModel;
 import com.app.Fulwari.model.MyProfile;
 import com.app.Fulwari.model.Notes;
 import com.app.Fulwari.model.OrderCancellationModel;
+import com.app.Fulwari.model.PredefinedPackCategoryData;
+import com.app.Fulwari.model.PredefinedPackDataBeans;
 import com.app.Fulwari.model.Privacymodel;
 import com.app.Fulwari.model.ProductList;
 import com.app.Fulwari.model.ProductModel;
@@ -88,9 +91,19 @@ public interface ApiServices {
     @GET("service.php?action=subcategory")
     Call<SubCategoryDataResponse>   GeSubCategoryDataResponse(@Query("category_id") String category_id);
 
+
+    @GET("service.php?action=predefined_pack_category")
+    Call<PredefinedPackCategoryData>   getPredefinedPackCategory(@Query("user_id") String userId,@Query("unique_id") String unique_id);
+
+    @GET("service.php?action=predefined_pack_list")
+    Call<PredefinedPackDataBeans>   getPredefinedPackList(@Query("category_id") String categoryId, @Query("user_id") String userId, @Query("unique_id") String unique_id);
+
+    @GET("service.php?action=custom_pack_list")
+    Call<FlowerProductBean> GetCustomPackList(@Query("user_id") String user_id, @Query("unique_id") String unique_id);
+
+
     @GET("service.php?action=product_list")
     Call<ProductList> GetProductListResponse(@Query("category_id") String category_id, @Query("subcategory_id") String subcategory_id, @Query("user_id") String user_id, @Query("unique_id") String unique_id);
-
 /*
     @GET("coSZpazTAO?indent=2")
     Call<ProductList> GetProductListResponse(@Query("category_id") String category_id, @Query("subcategory_id") String subcategory_id, @Query("user_id") String user_id, @Query("unique_id") String unique_id);

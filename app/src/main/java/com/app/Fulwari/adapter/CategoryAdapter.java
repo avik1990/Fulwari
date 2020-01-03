@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.Fulwari.FlowersCategory;
 import com.app.Fulwari.ProductPage;
 import com.app.Fulwari.SubCategoryPage;
 import com.app.Fulwari.R;
@@ -53,17 +54,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                 @Override
                 public void onClick(View v) {
                     Preferences.set_dashCatId(mContext, countryList.get(getAdapterPosition()).getCategoryId());
+
+                    if(countryList.get(getAdapterPosition()).categoryName.equalsIgnoreCase("Flowers")){
+                        Intent a = new Intent(mContext, FlowersCategory.class);
+                        // a.putExtra("position", "" + pos);
+                        a.putExtra("category_id", countryList.get(getAdapterPosition()).getCategoryId());
+                        a.putExtra("from", countryList.get(getAdapterPosition()).categoryName);
+                        a.putExtra("sub_category_id", "0");
+                        mContext.startActivity(a);
+                    }else {
                    /* Intent i = new Intent(mContext, SubCategoryPage.class);
                     i.putExtra("from", holder.tv_categoryname.getText().toString().trim());
                     i.putExtra("cat_id", countryList.get(position).getCategoryId());
                     mContext.startActivity(i);*/
-
-                    Intent a = new Intent(mContext, ProductPage.class);
-                    // a.putExtra("position", "" + pos);
-                    a.putExtra("category_id", countryList.get(getAdapterPosition()).getCategoryId());
-                    a.putExtra("from",countryList.get(getAdapterPosition()).categoryName);
-                    a.putExtra("sub_category_id","0");
-                    mContext.startActivity(a);
+                        Intent a = new Intent(mContext, ProductPage.class);
+                        // a.putExtra("position", "" + pos);
+                        a.putExtra("category_id", countryList.get(getAdapterPosition()).getCategoryId());
+                        a.putExtra("from", countryList.get(getAdapterPosition()).categoryName);
+                        a.putExtra("sub_category_id", "0");
+                        mContext.startActivity(a);
+                    }
                 }
             });
         }
