@@ -9,7 +9,7 @@ public class PredefinedPackDataBeans {
 
     @SerializedName("CustomPackData")
     @Expose
-    private List<ProductDatum> productData = null;
+    private List<FlowerProductBean.ProductDatum> productData = null;
     @SerializedName("Ack")
     @Expose
     private Integer ack;
@@ -17,11 +17,11 @@ public class PredefinedPackDataBeans {
     @Expose
     private String msg;
 
-    public List<ProductDatum> getProductData() {
+    public List<FlowerProductBean.ProductDatum> getProductData() {
         return productData;
     }
 
-    public void setProductData(List<ProductDatum> productData) {
+    public void setProductData(List<FlowerProductBean.ProductDatum> productData) {
         this.productData = productData;
     }
 

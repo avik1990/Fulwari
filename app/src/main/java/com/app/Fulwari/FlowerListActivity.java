@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.app.Fulwari.adapter.FlowerProductAdapter;
+import com.app.Fulwari.adapter.HorizontalCategoryAdapter;
 import com.app.Fulwari.model.FlowerProductBean;
 import com.app.Fulwari.model.PredefinedPackCategoryData;
 import com.app.Fulwari.model.PredefinedPackDataBeans;
@@ -24,13 +26,16 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class FlowerListActivity extends AppCompatActivity implements View.OnClickListener, FlowerProductAdapter.AdapterPos, FlowerProductAdapter.UpdateCartCount{
+public class FlowerListActivity extends AppCompatActivity implements View.OnClickListener,
+        FlowerProductAdapter.AdapterPos,HorizontalCategoryAdapter.BrandSelectedLisener, FlowerProductAdapter.UpdateCartCount{
     RecyclerView rv_subcategory_listing,rv_product_listing;
     int tag;// tag ==1 means custom  tag==2 means predefined
     ProgressDialog pDialog;
     public static FlowerProductBean productModel;
+    public static PredefinedPackDataBeans predefinedPackDataBeans;
     Context mContext;
     TextView tv_notFound;
+    PredefinedPackCategoryData predefinedPackCategoryData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +46,18 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
         rv_product_listing=findViewById(R.id.rv_product_listing);
         tv_notFound=findViewById(R.id.not_found);
         rv_product_listing.setLayoutManager(new GridLayoutManager(mContext,2));
+        LinearLayoutManager layoutManager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rv_subcategory_listing.setLayoutManager(layoutManager);
+      //  rv_subcategory_listing.setLayoutManager(new GridLayoutManager(mContext,2));
         tag=getIntent().getIntExtra("tag",-1);
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCanceledOnTouchOutside(false);
         pDialog.setCancelable(false);
+        if(tag==1)
         fetchCustomflowerData();
+        else
+            getPredefineCategoryData();
     }
 
     @Override
@@ -76,14 +87,14 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<PredefinedPackDataBeans> call, retrofit2.Response<PredefinedPackDataBeans> response) {
                 Log.d("String", "" + response);
-                //productModel = response.body();
-                if (productModel.getAck() == 1) {
-                    if (productModel.getProductData().size() > 0) {
+                predefinedPackDataBeans = response.body();
+                if (predefinedPackDataBeans.getAck() == 1) {
+                    if (predefinedPackDataBeans.getProductData() !=null && predefinedPackDataBeans.getProductData().size() > 0) {
                         tv_notFound.setVisibility(View.GONE);
-                        inflateAdapter();
+                        inflateAdapterForPredefine();
                     }
                 } else {
-                    Utility.showToastShort(mContext, productModel.getMsg());
+                    Utility.showToastShort(mContext, predefinedPackDataBeans.getMsg());
                     tv_notFound.setVisibility(View.VISIBLE);
                 }
                 pDialog.dismiss();
@@ -107,8 +118,6 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
 
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
-        // category_id="3";
-        //sub_category_id="3";
 
         Call<PredefinedPackCategoryData> call = redditAPI.getPredefinedPackCategory( Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext));
         call.enqueue(new Callback<PredefinedPackCategoryData>() {
@@ -116,10 +125,13 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<PredefinedPackCategoryData> call, retrofit2.Response<PredefinedPackCategoryData> response) {
                 Log.d("String", "" + response);
+                predefinedPackCategoryData=response.body();
                 //productModel = response.body();
-                if (productModel.getAck() == 1) {
-                    if (productModel.getProductData().size() > 0) {
-                        inflateAdapter();
+                if (predefinedPackCategoryData.getAck() == 1) {
+                    if (predefinedPackCategoryData.getPredefinedPackCategoryDataList().size() > 0) {
+                        setCategory();
+                        getPredefineFlowerData(predefinedPackCategoryData.getPredefinedPackCategoryDataList().get(0).getCategory_id());
+                        //inflateAdapter();
                     }
                 } else {
                     Utility.showToastShort(mContext, productModel.getMsg());
@@ -132,6 +144,12 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
                 pDialog.dismiss();
             }
         });
+    }
+
+    private void setCategory(){
+        HorizontalCategoryAdapter ca = new HorizontalCategoryAdapter(this,this);
+        rv_subcategory_listing.setAdapter(ca);
+
     }
 
     private void fetchCustomflowerData() {
@@ -180,6 +198,11 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
         rv_product_listing.setAdapter(ca);
     }
 
+    private void inflateAdapterForPredefine() {
+        FlowerProductAdapter ca = new FlowerProductAdapter(mContext, predefinedPackDataBeans.getProductData(), this, this);
+        rv_product_listing.setAdapter(ca);
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -187,14 +210,21 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void adapterPosition(int pos) {
-        Intent a = new Intent(mContext, FlowerCustomDetails.class);
-        a.putExtra("position", pos);
-        //a.putExtra("category_id", category_id);
-        mContext.startActivity(a);
+        if(tag==1 && productModel.getProductData().get(pos).getPackets().size()>0) {
+            Intent a = new Intent(mContext, FlowerCustomDetails.class);
+            a.putExtra("position", pos);
+            //a.putExtra("category_id", category_id);
+            mContext.startActivity(a);
+        }
     }
 
     @Override
     public void updateCartCount() {
 
+    }
+
+    @Override
+    public void onBrandsSelected(PredefinedPackCategoryData.PredefinedPackList category) {
+        getPredefineFlowerData(category.getCategory_id());
     }
 }

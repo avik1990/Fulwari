@@ -8,7 +8,7 @@ import java.util.List;
 public class PredefinedPackCategoryData {
     @SerializedName("Ack")
     @Expose
-    private Integer ack;
+    private int ack;
     @SerializedName("msg")
     @Expose
     private String msg;
@@ -17,7 +17,29 @@ public class PredefinedPackCategoryData {
     @Expose
     private List<PredefinedPackList> predefinedPackCategoryDataList;
 
+    public Integer getAck() {
+        return ack;
+    }
 
+    public void setAck(Integer ack) {
+        this.ack = ack;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public List<PredefinedPackList> getPredefinedPackCategoryDataList() {
+        return predefinedPackCategoryDataList;
+    }
+
+    public void setPredefinedPackCategoryDataList(List<PredefinedPackList> predefinedPackCategoryDataList) {
+        this.predefinedPackCategoryDataList = predefinedPackCategoryDataList;
+    }
 
 
     public class PredefinedPackList{
@@ -27,6 +49,16 @@ public class PredefinedPackCategoryData {
         @SerializedName("category_name")
         @Expose
         private String category_name;
+
+        public boolean isSelected() {
+            return isSelected;
+        }
+
+        public void setSelected(boolean selected) {
+            isSelected = selected;
+        }
+
+        private boolean isSelected;
 
         public String getCategory_id() {
             return category_id;
