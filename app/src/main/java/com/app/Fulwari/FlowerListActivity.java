@@ -55,7 +55,7 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
         pDialog.setCanceledOnTouchOutside(false);
         pDialog.setCancelable(false);
         if(tag==1)
-        fetchCustomflowerData();
+          fetchCustomflowerData();
         else
             getPredefineCategoryData();
     }
@@ -91,11 +91,13 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
                 if (predefinedPackDataBeans.getAck() == 1) {
                     if (predefinedPackDataBeans.getProductData() !=null && predefinedPackDataBeans.getProductData().size() > 0) {
                         tv_notFound.setVisibility(View.GONE);
+                        rv_product_listing.setVisibility(View.VISIBLE);
                         inflateAdapterForPredefine();
                     }
                 } else {
                     Utility.showToastShort(mContext, predefinedPackDataBeans.getMsg());
                     tv_notFound.setVisibility(View.VISIBLE);
+                    rv_product_listing.setVisibility(View.GONE);
                 }
                 pDialog.dismiss();
             }
@@ -103,6 +105,8 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onFailure(Call<PredefinedPackDataBeans> call, Throwable t) {
                 pDialog.dismiss();
+                tv_notFound.setVisibility(View.VISIBLE);
+                rv_product_listing.setVisibility(View.GONE);
             }
         });
     }
@@ -149,6 +153,7 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
     private void setCategory(){
         HorizontalCategoryAdapter ca = new HorizontalCategoryAdapter(this,this);
         rv_subcategory_listing.setAdapter(ca);
+        ca.setData(predefinedPackCategoryData.getPredefinedPackCategoryDataList());
 
     }
 
@@ -175,11 +180,13 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
                 if (productModel.getAck() == 1) {
                     if (productModel.getProductData().size() > 0) {
                         tv_notFound.setVisibility(View.GONE);
+                        rv_product_listing.setVisibility(View.VISIBLE);
                         inflateAdapter();
                     }
                 } else {
                     Utility.showToastShort(mContext, productModel.getMsg());
                     tv_notFound.setVisibility(View.VISIBLE);
+                    rv_product_listing.setVisibility(View.GONE);
 
                 }
                 pDialog.dismiss();
@@ -188,7 +195,8 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onFailure(Call<FlowerProductBean> call, Throwable t) {
                 pDialog.dismiss();
-                tv_notFound.setVisibility(View.GONE);
+                tv_notFound.setVisibility(View.VISIBLE);
+                rv_product_listing.setVisibility(View.GONE);
             }
         });
     }

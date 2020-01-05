@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HorizontalCategoryAdapter extends RecyclerView.Adapter<HorizontalCategoryAdapter.ViewHolder> {
-    private List<PredefinedPackCategoryData.PredefinedPackList> categoryList;
+    private List<PredefinedPackCategoryData.PredefinedPackList> categoryList=new ArrayList<>();
     Context context;
     Gson gson;
     private BrandSelectedLisener brandSelectedLisener;

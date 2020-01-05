@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PredefinedPackDataBeans {
 
-    @SerializedName("CustomPackData")
+    @SerializedName("PredefinedPackData")
     @Expose
     private List<FlowerProductBean.ProductDatum> productData = null;
     @SerializedName("Ack")

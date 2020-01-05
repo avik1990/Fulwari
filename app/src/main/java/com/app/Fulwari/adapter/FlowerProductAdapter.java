@@ -170,7 +170,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
 
         }
 
-        if (c.getPackets().size() > 0) {
+       /* if (c.getPackets().size() > 0) {
             holder.fl_layout.setVisibility(View.VISIBLE);
             ///if any item is checked from dropdown
             if (c.getSelectedPos() != -1) {
@@ -179,7 +179,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                 holder.tv_dis_percent.setVisibility(View.GONE);
                 holder.tv_price_orginal.setPaintFlags(0);
                 holder.tv_price_discount.setVisibility(View.GONE);
-               /* if (c.getPackets().get(c.getSelectedPos()).getDiscount()!=null &&!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
+               *//* if (c.getPackets().get(c.getSelectedPos()).getDiscount()!=null &&!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(c.getSelectedPos()).getDiscount() + " off");
@@ -189,19 +189,19 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);
                     holder.tv_price_discount.setVisibility(View.GONE);
-                }*/
+                }*//*
 
                 holder.sp_packets.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
 
-                       /* String packetSize[] = new String[c.getPackets().size()];
+                       *//* String packetSize[] = new String[c.getPackets().size()];
                         for (int i = 0; i < c.getPackets().size(); i++) {
                            // packetSize[i] = c.getPackets().get(i).getPacketSize();
-                        }*/
+                        }*//*
 
-                      /*  AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                      *//*  AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                         builder.setTitle(c.getProductNameEnglish()).setItems(packetSize, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int pos) {
@@ -209,7 +209,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                                // holder.sp_packets.setText(c.getPackets().get(pos).getPacketSize());
                                 c.setSelectedPos(pos);
                                 packet_id = c.getPackets().get(c.getSelectedPos()).getPack_id();
-                               *//* if (!c.getPackets().get(pos).getDiscount().equals("0%")) {
+                               *//**//* if (!c.getPackets().get(pos).getDiscount().equals("0%")) {
                                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                                   //  holder.tv_dis_percent.setText(" " + c.getPackets().get(pos).getDiscount());
                                     holder.tv_price_orginal.setText(c.getProduct_price());
@@ -221,14 +221,14 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                                     holder.tv_price_orginal.setPaintFlags(0);
                                     holder.tv_dis_percent.setVisibility(View.GONE);
                                     holder.tv_price_discount.setVisibility(View.GONE);
-                                }*//*
+                                }*//**//*
                                 holder.tv_price_orginal.setText("\u20B9"+c.getProduct_price());
                                 holder.tv_price_orginal.setPaintFlags(0);
                                 holder.tv_dis_percent.setVisibility(View.GONE);
                                 holder.tv_price_discount.setVisibility(View.GONE);
                             }
                         });
-                        builder.show();*/
+                        builder.show();*//*
                     }
                 });
             } else {
@@ -239,7 +239,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                 holder.tv_dis_percent.setVisibility(View.GONE);
                 holder.tv_price_orginal.setPaintFlags(0);
                 holder.tv_price_discount.setVisibility(View.GONE);
-               /* if (!c.getPackets().get(0).getDiscount().equals("0%")) {
+               *//* if (!c.getPackets().get(0).getDiscount().equals("0%")) {
                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(0).getDiscount());
@@ -249,25 +249,25 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);
                     holder.tv_price_discount.setVisibility(View.GONE);
-                }*/
+                }*//*
 
 
             }
         } else {
-            holder.fl_layout.setVisibility(View.GONE);
-        }
 
+        }*/
+        holder.fl_layout.setVisibility(View.GONE);
         holder.btn_add.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (c.getPackets().size() > 0) {
+              ///  if (c.getPackets().size() > 0) {
                     product_id = c.getProductId();
-                    if (c.getSelectedPos() == -1) {
+                   /* if (c.getSelectedPos() == -1) {
                         packet_id = c.getPackets().get(0).getPack_id();
                     } else {
                         packet_id = c.getPackets().get(c.getSelectedPos()).getPack_id();
-                    }
+                    }*/
 
                     holder.btn_add.setVisibility(View.GONE);
                     holder.ll_cart_quantity.setVisibility(View.VISIBLE);
@@ -276,9 +276,9 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
                     if (cd.isConnected()) {
                         AddtoCartServices("1");
                     }
-                }else {
+               /* }else {
                     Utility.showToastShort(mContext, "Please select pack size");
-                }
+                }*/
 
             }
         });
@@ -289,7 +289,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
             public void onClick(View v) {
                 if (cd.isConnected()) {
                     if (holder.iv_sub.isPressed()) {
-                        if (c.getPackets().size() > 0) {
+                        //if (c.getPackets().size() > 0) {
                             if (holder.et_qty.getText().toString().equals("1")) {
                                 holder.btn_add.setVisibility(View.VISIBLE);
                                 holder.ll_cart_quantity.setVisibility(View.GONE);
@@ -311,18 +311,18 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
 
                             product_id = c.getProductId();
 
-                            if (c.getSelectedPos() == -1) {
+                          /*  if (c.getSelectedPos() == -1) {
                                 packet_id = c.getPackets().get(0).getPack_id();
                             } else {
                                 packet_id = c.getPackets().get(c.getSelectedPos()).getPack_id();
-                            }
+                            }*/
                             //Utility.showToastShort(mContext, product_id + ":" + packet_id);
                             if (cd.isConnected()) {
                                 AddtoCartServices("0");
                             }
-                        }else{
+                        /*}else{
                             Utility.showToastShort(mContext, "Please select pack size");
-                        }
+                        }*/
                     }
                 } else {
                     Utility.showToastShort(mContext, "No Internet Connection");
@@ -335,7 +335,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
             public void onClick(View v) {
                 if (cd.isConnected()) {
                     if (holder.iv_add.isPressed()) {
-                        if (c.getPackets().size() > 0) {
+                       // if (c.getPackets().size() > 0) {
                             if (!holder.et_qty.getText().toString().isEmpty()) {
                                 amount = Integer.parseInt(holder.et_qty.getText().toString());
                             } else {
@@ -349,18 +349,18 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
 
                             product_id = c.getProductId();
 
-                            if (c.getSelectedPos() == -1) {
+                           /* if (c.getSelectedPos() == -1) {
                                 packet_id = c.getPackets().get(0).getPack_id();
                             } else {
                                 packet_id = c.getPackets().get(c.getSelectedPos()).getPack_id();
-                            }
+                            }*/
 
                             if (cd.isConnected()) {
                                 AddtoCartServices("1");
                             }
-                        }else{
+                        /*}else{
                             Utility.showToastShort(mContext, "Please select pack size");
-                        }
+                        }*/
                     }
                 } else {
                     Utility.showToastShort(mContext, "No Internet Connection");
@@ -390,7 +390,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
         return position;
     }
 
-    private void AddtoCartServices(String isCartAdd) {
+    private void AddtoCartServices(String isCartAdd) {//packetid blank
         pDialog.show();
         String BASE_URL = mContext.getResources().getString(R.string.base_url);
         Retrofit retrofit = new Retrofit.Builder()
@@ -402,7 +402,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
         redditAPI = retrofit.create(ApiServices.class);
         Log.e("Log==",isCartAdd);
 
-        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext), product_id, packet_id, "1", isCartAdd);
+        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext), product_id, "", "1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override
