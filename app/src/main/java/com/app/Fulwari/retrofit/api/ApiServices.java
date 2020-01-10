@@ -27,6 +27,9 @@ import com.app.Fulwari.model.TermsConditionmodel;
 import com.app.Fulwari.model.ZipCodeVerify;
 import com.app.Fulwari.model.ZipCodemodel;
 import com.app.Fulwari.utils.Preferences;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -186,7 +189,7 @@ public interface ApiServices {
 
 
     @GET("service.php?action=post_feedback")
-    Call<CartDeleteAction> PostFeedback(@Query("user_id") String user_id, @Query("name") String name, @Query("email") String email, @Query("phone") String phone
+    Call<BaseResponse> PostFeedback(@Query("user_id") String user_id, @Query("name") String name, @Query("email") String email, @Query("phone") String phone
             , @Query("comment") String comment);
 
 

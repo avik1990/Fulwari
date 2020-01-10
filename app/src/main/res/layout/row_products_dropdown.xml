@@ -341,6 +341,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/original_price_ll"
                     android:padding="@dimen/_5sdp"
                     android:gravity="center_horizontal"
                     android:layout_gravity="center_horizontal"

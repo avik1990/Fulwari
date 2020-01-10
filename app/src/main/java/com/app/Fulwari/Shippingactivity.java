@@ -5,24 +5,35 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.Fulwari.model.CartDeleteAction;
+import com.app.Fulwari.model.ZipCodemodel;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
 import com.app.Fulwari.utils.Preferences;
 import com.app.Fulwari.utils.Utility;
+import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +59,8 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
     FrameLayout cartvie;
     ImageView btn_menu, btn_back;
     String quick_delivery;
+    ZipCodemodel zipCodemodel;
+    List<String> list_text = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +77,106 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
 
         initViews();
 
+    }
+
+
+    private void showCustomDialog() {
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.my_dialog, viewGroup, false);
+        FlexboxLayout container = dialogView.findViewById(R.id.v_container);
+        Button btn_proceed = dialogView.findViewById(R.id.btn_proceed);
+        Button btn_cancel = dialogView.findViewById(R.id.btn_cancel);
+
+
+        inflatelayout(container);
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView(dialogView);
+
+        //finally creating the alert dialog and displaying it
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        /**/
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+            }
+        });
+        btn_proceed.setVisibility(View.GONE);
+       // btn_cancel.setVisibility(View.GONE);
+
+    }
+
+    private void inflatelayout(FlexboxLayout container) {
+        LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        buttonLayoutParams.setMargins(5, 5, 5, 5);
+        for (int i = 0; i < list_text.size(); i++) {
+            final TextView tv = new TextView(getApplicationContext());
+            tv.setText(list_text.get(i));
+            tv.setHeight(70);
+            tv.setTextSize(16.0f);
+            tv.setGravity(Gravity.CENTER);
+            tv.setTextColor(Color.parseColor("#ffffff"));
+            tv.setBackground(getResources().getDrawable(R.drawable.rounded_corner_flex));
+            tv.setId(i + 1);
+            tv.setLayoutParams(buttonLayoutParams);
+            tv.setTag(i);
+            tv.setPadding(20, 10, 20, 10);
+            container.addView(tv);
+        }
+
+    }
+    private void fetchZipCode() {
+        pDialog.show();
+        String BASE_URL = getResources().getString(R.string.base_url);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiServices redditAPI;
+        redditAPI = retrofit.create(ApiServices.class);
+        Call<ZipCodemodel> call = redditAPI.GetZipCodeList();
+        call.enqueue(new Callback<ZipCodemodel>() {
+
+            @Override
+            public void onResponse(Call<ZipCodemodel> call, retrofit2.Response<ZipCodemodel> response) {
+                Log.d("String", "" + response);
+                if (response.isSuccessful()) {
+                    list_text.clear();
+                    zipCodemodel = response.body();
+                    if (zipCodemodel.getAck() == 1) {
+                        if (zipCodemodel.getZipData().size() > 0) {
+                            //list_text.clear();
+                            for (int i = 0; i < zipCodemodel.getZipData().size(); i++) {
+                                list_text.add(zipCodemodel.getZipData().get(i).getAvailableZipcode());
+                            }
+                            if(list_text.contains(et_pincode.getText().toString()))
+                                postShippingDetails();
+                            else
+                                showCustomDialog();
+                        }
+                    } else {
+                        Utility.showToastShort(mContext, zipCodemodel.getMsg());
+                    }
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ZipCodemodel> call, Throwable t) {
+                pDialog.dismiss();
+            }
+        });
     }
 
     private void initViews() {
@@ -103,7 +216,7 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
         et_lname.setText(Preferences.get_lastName(mContext));
         et_email.setText(Preferences.get_userEmail(mContext));
         et_phoneno.setText(Preferences.get_userPhone(mContext));
-        et_pincode.setEnabled(false);
+       // et_pincode.setEnabled(false);
 
         et_address.setText(Preferences.get_address(mContext));
         et_city.setText(Preferences.get_city(mContext));
@@ -167,6 +280,7 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
             }
 
             if (et_pincode.getText().toString().isEmpty()) {
+
                 Utility.showToastShort(mContext, "Please Enter Pin Code");
                 return;
             }
@@ -181,8 +295,8 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
             user_email = et_email.getText().toString().trim();
             user_phone = et_phoneno.getText().toString().trim();
 
+            fetchZipCode();
 
-            postShippingDetails();
 
         } else if (v == btn_back) {
             onBackPressed();

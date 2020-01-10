@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class FlowerListActivity extends AppCompatActivity implements View.OnClickListener,
         FlowerProductAdapter.AdapterPos,HorizontalCategoryAdapter.BrandSelectedLisener, FlowerProductAdapter.UpdateCartCount{
     RecyclerView rv_subcategory_listing,rv_product_listing;
-    int tag;// tag ==1 means custom  tag==2 means predefined
+    int tag;// tag ==1 means predefined  tag==2 means custom
     ProgressDialog pDialog;
     ImageView btn_menu, btn_back;
     public static FlowerProductBean productModel;

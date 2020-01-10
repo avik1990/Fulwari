@@ -20,7 +20,7 @@ public class Preferences {
 
     public static String get_userPhone(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("user_phone", "0");
+        String a_key = loginPreferences.getString("user_phone", "");
         return a_key;
     }
 
@@ -34,7 +34,7 @@ public class Preferences {
 
     public static String get_firstName(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("fuser_name", "0");
+        String a_key = loginPreferences.getString("fuser_name", "");
         return a_key;
     }
 
@@ -49,7 +49,7 @@ public class Preferences {
 
     public static String get_lastName(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("luser_name", "0");
+        String a_key = loginPreferences.getString("luser_name", "");
         return a_key;
     }
 
@@ -64,7 +64,7 @@ public class Preferences {
 
     public static String get_userEmail(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("user_Email", "0");
+        String a_key = loginPreferences.getString("user_Email", "");
         return a_key;
     }
 
@@ -77,7 +77,7 @@ public class Preferences {
 
     public static String get_userId(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("user_ID", "0");
+        String a_key = loginPreferences.getString("user_ID", "");
         return a_key;
     }
 
@@ -117,7 +117,7 @@ public class Preferences {
 
     public static String get_Zip(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("Kppref", 0); // 0 - for private mode
-        String a_key = loginPreferences.getString("zip", "0");
+        String a_key = loginPreferences.getString("zip", "");
         return a_key;
     }
 

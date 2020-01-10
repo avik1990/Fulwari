@@ -18,12 +18,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.CartDeleteAction;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.CircularTextView;
 import com.app.Fulwari.utils.ConnectionDetector;
 import com.app.Fulwari.utils.Preferences;
 import com.app.Fulwari.utils.Utility;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -160,25 +163,26 @@ public class Feedbackactivity extends AppCompatActivity implements View.OnClickL
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
 
-        Call<CartDeleteAction> call = redditAPI.PostFeedback(Preferences.get_userId(mContext), user_name, user_email, user_phone, user_comment);
-        call.enqueue(new Callback<CartDeleteAction>() {
+        Call<BaseResponse> call = redditAPI.PostFeedback(Preferences.get_userId(mContext), user_name, user_email, user_phone, user_comment);
+        call.enqueue(new Callback<BaseResponse>() {
 
             @Override
-            public void onResponse(Call<CartDeleteAction> call, retrofit2.Response<CartDeleteAction> response) {
-                Log.d("String", "" + response);
+            public void onResponse(Call<BaseResponse> call, retrofit2.Response<BaseResponse> response) {
+               // Log.d("String", "" + response.body().toString());
+                pDialog.dismiss();
                 if (response.isSuccessful()) {
-                    registration = response.body();
-                    if (registration.getAck().equals("1")) {
-                        Utility.showToastShort(mContext, registration.getMsg());
+                    BaseResponse response1 = response.body();
+                    if (response1.getAck()==1) {
+                        Utility.showToastShort(mContext, response1.getMsg());
                         onBackPressed();
                     } else {
-                        Utility.showToastShort(mContext, registration.getMsg());
+                        Utility.showToastShort(mContext, response1.getMsg());
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<CartDeleteAction> call, Throwable t) {
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
                 pDialog.dismiss();
             }
         });
