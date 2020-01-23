@@ -5,27 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.app.Fulwari.R;
 import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.ProductList;
-import com.app.Fulwari.model.SubCategoryDataResponse;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
 import com.app.Fulwari.utils.Preferences;
@@ -38,7 +33,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Query;
 
 /**
  * Created by Avik on 11-01-2017.
@@ -397,7 +391,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         redditAPI = retrofit.create(ApiServices.class);
         Log.e("Log==",isCartAdd);
 
-        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext), product_id, packet_id, "1", isCartAdd);
+        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext),
+                Preferences.get_UniqueId(mContext), product_id, packet_id, "other","1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override

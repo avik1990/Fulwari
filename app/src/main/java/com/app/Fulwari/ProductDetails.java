@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -14,8 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +25,6 @@ import com.app.Fulwari.model.AddToCart;
 import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.ProductList;
-import com.app.Fulwari.model.ProductModel;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.CircularTextView;
 import com.app.Fulwari.utils.ConnectionDetector;
@@ -426,7 +422,8 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
 
-        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext), Preferences.get_UniqueId(mContext), product_id, st_packet_id, "1", isCartAdd);
+        Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext),
+                Preferences.get_UniqueId(mContext), product_id, st_packet_id, "other","1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override

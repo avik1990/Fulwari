@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.LoginResponse;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;

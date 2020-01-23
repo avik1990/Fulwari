@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,8 +24,6 @@ import com.app.Fulwari.utils.CircularTextView;
 import com.app.Fulwari.utils.ConnectionDetector;
 import com.app.Fulwari.utils.Preferences;
 import com.app.Fulwari.utils.Utility;
-
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;

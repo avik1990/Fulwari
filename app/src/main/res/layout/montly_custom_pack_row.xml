@@ -141,6 +141,7 @@
             <TextView
                 android:id="@+id/tv_price_orginal"
                 android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_weight=".7"
                 android:layout_height="wrap_content"
                 android:textColor="@color/col_producttitle"

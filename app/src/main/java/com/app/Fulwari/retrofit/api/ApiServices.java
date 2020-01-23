@@ -10,6 +10,7 @@ import com.app.Fulwari.model.Category;
 import com.app.Fulwari.model.ContactUsModel;
 import com.app.Fulwari.model.CustomPackData;
 import com.app.Fulwari.model.FlowerProductBean;
+import com.app.Fulwari.model.LoginResponse;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.MyOrders;
 import com.app.Fulwari.model.MyOrdersDetailsModel;
@@ -21,16 +22,11 @@ import com.app.Fulwari.model.PredefinedPackDataBeans;
 import com.app.Fulwari.model.Privacymodel;
 import com.app.Fulwari.model.ProductList;
 import com.app.Fulwari.model.ProductModel;
-import com.app.Fulwari.model.LoginResponse;
 import com.app.Fulwari.model.RegistrationResponse;
 import com.app.Fulwari.model.SubCategoryDataResponse;
 import com.app.Fulwari.model.TermsConditionmodel;
 import com.app.Fulwari.model.ZipCodeVerify;
 import com.app.Fulwari.model.ZipCodemodel;
-import com.app.Fulwari.utils.Preferences;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -128,6 +124,7 @@ public interface ApiServices {
                                         @Query("unique_id") String unique_id,
                                         @Query("product_id") String product_id,
                                         @Query("packet_id") String packet_id,
+                                        @Query("type") String type,
                                         @Query("quantity") String quantity, @Query("isCartAdd") String isCartAdd);
 
 

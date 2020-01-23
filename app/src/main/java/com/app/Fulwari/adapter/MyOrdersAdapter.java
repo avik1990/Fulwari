@@ -1,6 +1,5 @@
 package com.app.Fulwari.adapter;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,13 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.app.Fulwari.Dashboard;
-import com.app.Fulwari.LoginActivity;
 import com.app.Fulwari.MyOrderActivity;
 import com.app.Fulwari.ProductOrderDetails;
 import com.app.Fulwari.R;
 import com.app.Fulwari.model.BaseResponse;
-import com.app.Fulwari.model.LoginResponse;
 import com.app.Fulwari.model.MyOrders;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
@@ -28,7 +24,6 @@ import com.app.Fulwari.utils.Utility;
 
 import java.util.List;
 
-import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;

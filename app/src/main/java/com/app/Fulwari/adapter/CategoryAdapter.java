@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.Fulwari.FlowersCategory;
 import com.app.Fulwari.ProductPage;
-import com.app.Fulwari.SubCategoryPage;
 import com.app.Fulwari.R;
 import com.app.Fulwari.model.Category;
 import com.app.Fulwari.utils.Preferences;

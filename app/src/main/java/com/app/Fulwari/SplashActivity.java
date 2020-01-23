@@ -5,15 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.app.Fulwari.utils.Preferences;
-import com.app.Fulwari.utils.Utility;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;

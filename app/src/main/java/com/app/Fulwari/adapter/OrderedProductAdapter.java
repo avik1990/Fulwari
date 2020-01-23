@@ -1,37 +1,22 @@
 package com.app.Fulwari.adapter;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.app.Fulwari.ProductCart;
 import com.app.Fulwari.R;
 import com.app.Fulwari.model.CartDeleteAction;
-import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.MyOrdersDetailsModel;
-import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
-import com.app.Fulwari.utils.Preferences;
-import com.app.Fulwari.utils.Utility;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAdapter.MyViewHolder> {
     private List<MyOrdersDetailsModel.CartDatum> moviesList;

@@ -48,6 +48,7 @@ public class CustomPackData {
         String product_photo;
         @SerializedName("product_price")
         String product_price;
+        private boolean isClicked = false;
 
         public List<PacketDetails> getPacketDetails() {
             return packetDetails;
@@ -87,6 +88,14 @@ public class CustomPackData {
 
         public void setProduct_price(String product_price) {
             this.product_price = product_price;
+        }
+
+        public boolean isClicked() {
+            return isClicked;
+        }
+
+        public void setClicked(boolean clicked) {
+            isClicked = clicked;
         }
     }
 

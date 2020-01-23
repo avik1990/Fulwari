@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-
 import com.app.Fulwari.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ProgressBarDrawable;
