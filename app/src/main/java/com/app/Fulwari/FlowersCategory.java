@@ -71,7 +71,7 @@ public class FlowersCategory extends AppCompatActivity  implements View.OnClickL
             intent.putExtra("sub_category_id", "0");
             startActivity(intent);
         }else if(v==predefineCardView){
-            Intent intent=new Intent(mContext,FlowerListActivity.class);
+                Intent intent=new Intent(mContext,MonthlyCustompack.class);
             intent.putExtra("tag", 1);
             intent.putExtra("sub_category_id", "0");
             startActivity(intent);

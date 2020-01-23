@@ -8,6 +8,7 @@ import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.CartDeleteAction;
 import com.app.Fulwari.model.Category;
 import com.app.Fulwari.model.ContactUsModel;
+import com.app.Fulwari.model.CustomPackData;
 import com.app.Fulwari.model.FlowerProductBean;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.MyOrders;
@@ -97,6 +98,9 @@ public interface ApiServices {
 
     @GET("service.php?action=predefined_pack_category")
     Call<PredefinedPackCategoryData>  getPredefinedPackCategory(@Query("user_id") String userId,@Query("unique_id") String unique_id);
+
+    @GET("service.php?action=custom_pack_list")
+    Call<CustomPackData>  getMonthlyCustomPacks(@Query("user_id") String userId, @Query("unique_id") String unique_id);
 
     @GET("service.php?action=predefined_pack_list")
     Call<PredefinedPackDataBeans>   getPredefinedPackList(@Query("category_id") String categoryId, @Query("user_id") String userId, @Query("unique_id") String unique_id);
