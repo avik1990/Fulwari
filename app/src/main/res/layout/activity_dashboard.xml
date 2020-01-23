@@ -31,7 +31,7 @@
                 android:id="@+id/rl_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_120sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vp_slider"

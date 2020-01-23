@@ -148,7 +148,8 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".FlowersCategory" />
         <activity android:name=".FlowerListActivity" />
-        <activity android:name=".FlowerCustomDetails"></activity>
+        <activity android:name=".FlowerCustomDetails" />
+        <activity android:name=".MonthlyCustompack"></activity>
     </application>
 
 </manifest>

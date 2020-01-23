@@ -8,6 +8,7 @@ import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.CartDeleteAction;
 import com.app.Fulwari.model.Category;
 import com.app.Fulwari.model.ContactUsModel;
+import com.app.Fulwari.model.CustomPackData;
 import com.app.Fulwari.model.FlowerProductBean;
 import com.app.Fulwari.model.MyCart;
 import com.app.Fulwari.model.MyOrders;
@@ -27,6 +28,9 @@ import com.app.Fulwari.model.TermsConditionmodel;
 import com.app.Fulwari.model.ZipCodeVerify;
 import com.app.Fulwari.model.ZipCodemodel;
 import com.app.Fulwari.utils.Preferences;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -94,6 +98,9 @@ public interface ApiServices {
 
     @GET("service.php?action=predefined_pack_category")
     Call<PredefinedPackCategoryData>  getPredefinedPackCategory(@Query("user_id") String userId,@Query("unique_id") String unique_id);
+
+    @GET("service.php?action=custom_pack_list")
+    Call<CustomPackData>  getMonthlyCustomPacks(@Query("user_id") String userId, @Query("unique_id") String unique_id);
 
     @GET("service.php?action=predefined_pack_list")
     Call<PredefinedPackDataBeans>   getPredefinedPackList(@Query("category_id") String categoryId, @Query("user_id") String userId, @Query("unique_id") String unique_id);
@@ -186,7 +193,7 @@ public interface ApiServices {
 
 
     @GET("service.php?action=post_feedback")
-    Call<CartDeleteAction> PostFeedback(@Query("user_id") String user_id, @Query("name") String name, @Query("email") String email, @Query("phone") String phone
+    Call<BaseResponse> PostFeedback(@Query("user_id") String user_id, @Query("name") String name, @Query("email") String email, @Query("phone") String phone
             , @Query("comment") String comment);
 
 

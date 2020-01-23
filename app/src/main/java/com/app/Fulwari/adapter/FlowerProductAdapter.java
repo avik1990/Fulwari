@@ -121,8 +121,9 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
         // holder.tv_productdetails.setText("dsfsdfsdfsdfsd");
 
             holder.tv_productdetails.setVisibility(View.GONE);
-
-
+        holder.tv_price_orginal.setText("\u20B9"+c.getProduct_price());
+        holder.tv_price_orginal.setPaintFlags(0);
+        holder.tv_price_discount.setVisibility(View.GONE);
         holder.ll_mainbody.setOnClickListener(new View.OnClickListener() {
 
             @Override

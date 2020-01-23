@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
   import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.Fulwari.R;
@@ -41,33 +42,36 @@ public class HorizontalCategoryAdapter extends RecyclerView.Adapter<HorizontalCa
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_name;
+        RelativeLayout card_rl;
 
 
         public ViewHolder(View view) {
             super(view);
             tv_name = (TextView) view.findViewById(R.id.band_name);
+            card_rl = (RelativeLayout) view.findViewById(R.id.card_rl);
             tv_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    for(PredefinedPackCategoryData.PredefinedPackList data:categoryList){
+                        data.setSelected(false);
+                    }
+                    categoryList.get(getAdapterPosition()).setSelected(true);
                     brandSelectedLisener.onBrandsSelected(categoryList.get(getAdapterPosition()));
+                    notifyDataSetChanged();
                 }
             });
         }
     }
+   // android:background="@{brands.isSelect?@drawable/image_background_border:@drawable/image_bg_blank}"
 
     @Override
     public void onBindViewHolder(final HorizontalCategoryAdapter.ViewHolder holder, int position) {
         PredefinedPackCategoryData.PredefinedPackList c = categoryList.get(position);
         holder.tv_name.setText(c.getCategory_name());
-        /*holder.rv_sun.setText(c.getSunday());
-        holder.tv_mon.setText(c.getMonday());
-        holder.tv_tue.setText(c.getTuesday());
-        holder.tv_wed.setText(c.getWednesday());
-        holder.tv_thu.setText(c.getTuesday());
-        holder.tv_fri.setText(c.getFriday());
-        holder.tv_sat.setText(c.getSaturday());
-        holder.tv_productname.setText(c.getFlower_name());*/
-
+        if(c.isSelected())
+            holder.card_rl.setBackground(context.getResources().getDrawable(R.drawable.image_background_border));
+        else
+            holder.card_rl.setBackground(context.getResources().getDrawable(R.drawable.image_bg_blank));
     }
 
     @Override

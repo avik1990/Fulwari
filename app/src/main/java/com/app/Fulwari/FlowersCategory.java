@@ -40,6 +40,15 @@ public class FlowersCategory extends AppCompatActivity  implements View.OnClickL
         tv_cartcount.setVisibility(View.GONE);
         iv_cart = findViewById(R.id.iv_cart);
         iv_cart.setVisibility(View.GONE);
+        ImageView iv_home = findViewById(R.id.iv_home);
+        iv_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, Dashboard.class);
+                startActivity(i);
+                finishAffinity();
+            }
+        });
     }
 
     @Override
@@ -58,11 +67,13 @@ public class FlowersCategory extends AppCompatActivity  implements View.OnClickL
             startActivity(i);
         }else if(v==customCardView){
             Intent intent=new Intent(mContext,FlowerListActivity.class);
-            intent.putExtra("tag", 1);
+            intent.putExtra("tag", 2);
+            intent.putExtra("sub_category_id", "0");
             startActivity(intent);
         }else if(v==predefineCardView){
-            Intent intent=new Intent(mContext,FlowerListActivity.class);
-            intent.putExtra("tag", 2);
+                Intent intent=new Intent(mContext,MonthlyCustompack.class);
+            intent.putExtra("tag", 1);
+            intent.putExtra("sub_category_id", "0");
             startActivity(intent);
         }
     }

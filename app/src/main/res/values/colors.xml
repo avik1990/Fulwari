@@ -25,6 +25,7 @@
     <color name="light_pink">#f7dadf</color>
 
     <color name="black">#555555</color>
+    <color name="dark_black">#000000</color>
     <color name="dash_eve">#424242</color>
     <color name="btn_gray">#3a3a3a</color>
     <color name="light_black">#737373</color>

@@ -16,6 +16,7 @@
         card_view:cardElevation="@dimen/_5sdp">
 
         <RelativeLayout
+            android:id="@+id/card_rl"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
