@@ -400,7 +400,7 @@ public class FlowerProductAdapter extends RecyclerView.Adapter<FlowerProductAdap
         Log.e("Log==",isCartAdd);
 
         Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext),
-                Preferences.get_UniqueId(mContext), product_id, "", "flower","1", isCartAdd);
+                Preferences.get_UniqueId(mContext), product_id, "", "flower_own","1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override

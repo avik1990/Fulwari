@@ -35,14 +35,14 @@
             <FrameLayout
                 android:id="@+id/v_img"
                 android:layout_width="0dp"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/iv_chefimage"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:padding="2dp"
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:maxLines="1"
+                    android:maxLines="5"
                     android:text=""
                     android:textColor="@color/col_producttitle"
                     android:textSize="@dimen/_14sdp"
@@ -142,10 +142,10 @@
                 android:id="@+id/tv_price_orginal"
                 android:layout_width="0dp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_weight=".7"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/col_producttitle"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold" />
 
         </LinearLayout>
