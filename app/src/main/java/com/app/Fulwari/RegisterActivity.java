@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_zipcode = findViewById(R.id.et_zipcode);
 
 
-        et_zipcode.addTextChangedListener(new TextWatcher() {
+       /* et_zipcode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
 
         btn_register = findViewById(R.id.btn_register);
@@ -266,8 +266,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             Preferences.set_city(mContext, loginResponse.getLoginData().get(0).getCity());
                             Preferences.set_state(mContext, loginResponse.getLoginData().get(0).getState());
                             Preferences.set_Zip(mContext, loginResponse.getLoginData().get(0).getZip());
-
-
                         }
                     } else {
                         Utility.showToastShort(mContext, registration.getMsg());

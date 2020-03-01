@@ -10,6 +10,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.Fulwari.model.CartDeleteAction;
+import com.app.Fulwari.model.ZipCodeVerify;
 import com.app.Fulwari.model.ZipCodemodel;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
@@ -60,6 +63,7 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
     String quick_delivery;
     ZipCodemodel zipCodemodel;
     List<String> list_text = new ArrayList<>();
+    private ZipCodeVerify zipCodeVerify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,7 +226,25 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
         et_state.setText(Preferences.get_state(mContext));
 
         et_pincode.setText(Preferences.get_Zip(mContext));
+        VerifyZipCodeparsejson(Preferences.get_Zip(mContext));
+        et_pincode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().length() == 6) {
+                    VerifyZipCodeparsejson(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         ImageView iv_phone=findViewById(R.id.iv_phone);
         iv_phone.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
@@ -339,6 +361,43 @@ public class Shippingactivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void VerifyZipCodeparsejson(final String zipcode) {
+        pDialog.show();
+        String BASE_URL = getResources().getString(R.string.base_url);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiServices redditAPI;
+        redditAPI = retrofit.create(ApiServices.class);
+        Call<ZipCodeVerify> call = redditAPI.VerifyZipCode(zipcode);
+        call.enqueue(new Callback<ZipCodeVerify>() {
+
+            @Override
+            public void onResponse(Call<ZipCodeVerify> call, retrofit2.Response<ZipCodeVerify> response) {
+                Log.d("String", "" + response);
+                if (response.isSuccessful()) {
+                    zipCodeVerify = response.body();
+                    if (zipCodeVerify.getAck().equals("1")) {
+                        btn_placeorder.setText("Place Order");
+                        btn_placeorder.setEnabled(true);
+                       // Utility.showToastShort(mContext, zipCodeVerify.getMsg());
+                    } else {
+                        btn_placeorder.setText("Service Not Available");
+                        btn_placeorder.setEnabled(false);
+                        Utility.showToastShort(mContext, zipCodeVerify.getMsg());
+                    }
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ZipCodeVerify> call, Throwable t) {
+                pDialog.dismiss();
+            }
+        });
+    }
 
     private void getMessage() {
         String BASE_URL = getResources().getString(R.string.base_url);

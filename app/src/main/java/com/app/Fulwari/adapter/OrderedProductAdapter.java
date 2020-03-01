@@ -81,10 +81,10 @@ public class OrderedProductAdapter extends RecyclerView.Adapter<OrderedProductAd
         holder.tv_productname.setText(movie.getProductName());
         holder.tv_id.setText(movie.getCartId());
         holder.et_qty.setText("Quantity: "+String.valueOf(movie.quantity));
-        holder.tv_price.setText("Subtotal: "+"\u20A8" + ". " + movie.getSubtotal());
+        holder.tv_price.setText("Subtotal: "+"\u20B9" + movie.getSubtotal());
 
         holder.tv_packetsize.setText(movie.packetSize);
-        holder.tv_unitprice.setText("Unit Price: "+"\u20A8" + ". " + String.valueOf(movie.unitPrice));
+        holder.tv_unitprice.setText("Unit Price: "+"\u20B9" + String.valueOf(movie.unitPrice));
         //holder.tv_quantity.setText("Packet      : " + String.valueOf(movie.quantity) + " Pc(s)");
        /* if (!movie.discount.equalsIgnoreCase("0")) {
             holder.tv_price.setVisibility(View.GONE);

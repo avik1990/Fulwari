@@ -50,7 +50,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_toRightOf="@+id/rl_v1"
                     android:orientation="vertical">
 
@@ -71,6 +71,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="5dp"
                         android:text="200"
+                        android:textStyle="bold"
                         android:textColor="@color/col_producttitle"
                         android:visibility="visible" />
 
@@ -116,9 +117,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="200"
-                            android:textColor="@color/caldroid_black"
+                            android:textColor="@color/col_producttitle"
                             android:textSize="@dimen/_13sdp"
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:id="@+id/et_qty"
@@ -129,7 +130,7 @@
                             android:text="1"
                             android:textColor="@color/col_producttitle"
                             android:textSize="@dimen/_13sdp"
-                            android:textStyle="bold" />
+                            />
 
                     </LinearLayout>
 
@@ -141,9 +142,8 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_vertical"
                         android:text="200"
-                        android:textColor="@color/caldroid_black"
+                        android:textColor="@color/col_producttitle"
                         android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold"
                         android:visibility="visible" />
 
 

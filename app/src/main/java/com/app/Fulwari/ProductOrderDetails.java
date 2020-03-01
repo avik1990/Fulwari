@@ -207,19 +207,14 @@ public class ProductOrderDetails extends AppCompatActivity implements View.OnCli
                 rl_cart.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 
-                tv_totalprice.setText("\u20A8" + ". " + myCart.getPriceData().totalPrice);
+                tv_totalprice.setText("\u20B9" +   myCart.getPriceData().totalPrice);
                 tv_servicetax.setText(myCart.getPriceData().totalQuantity);
 
-                if (Double.parseDouble(myCart.getPriceData().totalPrice) >= 150) {
-                    tv_taxpercentage.setVisibility(View.GONE);
-                    tv_delivery.setVisibility(View.GONE);
-                } else {
-                    tv_taxpercentage.setVisibility(View.VISIBLE);
-                    tv_delivery.setVisibility(View.VISIBLE);
-                    tv_taxpercentage.setText("\u20A8" + ". " + myCart.getPriceData().deliveryCharge);
-                }
+                tv_taxpercentage.setVisibility(View.VISIBLE);
+                tv_delivery.setVisibility(View.VISIBLE);
+                tv_taxpercentage.setText("\u20B9" + myCart.getPriceData().deliveryCharge);
 
-                tv_grandtotdal.setText("\u20A8" + ". " + myCart.getPriceData().grandTotal);
+                tv_grandtotdal.setText("\u20B9" + myCart.getPriceData().grandTotal);
                 footer.setVisibility(View.VISIBLE);
                 tv_quick.setText(myCart.getPriceData().quickDelivery);
                /* cb_quickdelivery.setOnCheck

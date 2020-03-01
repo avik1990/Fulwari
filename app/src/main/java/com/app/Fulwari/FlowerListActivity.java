@@ -88,6 +88,7 @@ public class FlowerListActivity extends AppCompatActivity implements View.OnClic
         searchEditText.setCursorVisible(true);
         //tv_pagename.setText(category_name);
         tv_pagename = findViewById(R.id.tv_pagename);
+        tv_pagename.setText("Make Your Own Pack");
         iv_home = findViewById(R.id.iv_home);
         iv_home.setOnClickListener(this);
         sub_category_id = getIntent().getExtras().getString("sub_category_id");

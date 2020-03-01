@@ -87,7 +87,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
         movie = moviesList.get(position);
         holder.tv_date.setText(Utility.getFormasssttedDate(movie.getOrderDate()));
         holder.tv_totalitems.setText("Total Items : " + movie.getTotalItems());
-        holder.tv_totalprice.setText("Total Price : " + "\u20A8" + ". " + movie.getTotalPrice());
+        holder.tv_totalprice.setText("Total Price : " + "\u20B9" + ". " + movie.getTotalPrice());
         holder.tv_paymentstatus.setText("Payment Status : " + movie.getPaymentStatus());
         holder.tv_deliverystatus.setText("Delivery Status : " + movie.getDeliveryStatus());
         holder.tv_orderid.setText("Order Id : " + movie.getOrderId());
