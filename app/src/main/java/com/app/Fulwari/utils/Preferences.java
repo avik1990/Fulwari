@@ -78,10 +78,14 @@ public class Preferences {
     public static String get_userId(Context mContext) {
         SharedPreferences loginPreferences = mContext.getSharedPreferences("fulwari_ap", 0); // 0 - for private mode
         String a_key = loginPreferences.getString("user_ID", "");
+        if(a_key.isEmpty()){
+            a_key="0";
+        }
         return a_key;
     }
 
     public static void set_userId(Context mContext, String value) {
+
         SharedPreferences preferences = mContext.getSharedPreferences("fulwari_ap", 0); // 0 - for private mode
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("user_ID", value);
