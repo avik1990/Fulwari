@@ -74,7 +74,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     Button btn_add;
     LinearLayout ll_cart_quantity;
     ImageView iv_sub, iv_add;
-    TextView et_qty, tv_packsize;
+    TextView et_qty, tv_packsize, tv_outofstock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +106,8 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                 finishAffinity();
             }
         });
+
+        tv_outofstock = findViewById(R.id.tv_outofstock);
         tv_packsize = findViewById(R.id.tv_packsize);
         tv_brand = findViewById(R.id.tv_brand);
         btn_add = findViewById(R.id.btn_add);
@@ -212,12 +214,24 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setData() {
-            tv_brand.setVisibility(View.GONE);
-
-        tv_title.setText(ProductPage.productModel.getProductData().get(position).getProductNameEnglish() );
+        tv_brand.setVisibility(View.GONE);
+        tv_title.setText(ProductPage.productModel.getProductData().get(position).getProductNameEnglish());
         tv_desc.setVisibility(View.GONE);
         tv_desc.setText(ProductPage.productModel.getProductData().get(position).getProductDetails());
         product_id = ProductPage.productModel.getProductData().get(position).getProductId();
+
+        if (ProductPage.productModel.getProductData().get(position).getStock().equalsIgnoreCase("0")) {
+            ll_cart_quantity.setVisibility(View.GONE);
+            //tv_outofstock.setVisibility(View.VISIBLE);
+            btn_add.setVisibility(View.VISIBLE);
+            btn_add.setText("Out of Stock");
+            btn_add.setEnabled(false);
+        } else {
+            btn_add.setEnabled(true);
+            btn_add.setVisibility(View.VISIBLE);
+            ll_cart_quantity.setVisibility(View.VISIBLE);
+            //tv_outofstock.setVisibility(View.GONE);
+        }
 
         try {
             Picasso.with(mContext)
@@ -257,9 +271,9 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                 TextView tv_discount_percent = view2.findViewById(R.id.tv_discount_percent);
                 TextView tv_orginal_price = view2.findViewById(R.id.tv_orginal_price);
 
-                tv_offered_price.setText("\u20B9"+ProductPage.productModel.getProductData().get(position).getPackets().get(i).getPrice());
+                tv_offered_price.setText("\u20B9" + ProductPage.productModel.getProductData().get(position).getPackets().get(i).getPrice());
                 tv_discount_percent.setText(ProductPage.productModel.getProductData().get(position).getPackets().get(i).getDiscount() + " off");
-                tv_orginal_price.setText("\u20B9"+ProductPage.productModel.getProductData().get(position).getPackets().get(i).getOriginalPrice());
+                tv_orginal_price.setText("\u20B9" + ProductPage.productModel.getProductData().get(position).getPackets().get(i).getOriginalPrice());
                 tv_orginal_price.setPaintFlags(tv_orginal_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
                 tv_cat.setTextColor(Color.parseColor("#585858"));
@@ -423,7 +437,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
         redditAPI = retrofit.create(ApiServices.class);
 
         Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext),
-                Preferences.get_UniqueId(mContext), product_id, st_packet_id, "other","1", isCartAdd);
+                Preferences.get_UniqueId(mContext), product_id, st_packet_id, "other", "1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override

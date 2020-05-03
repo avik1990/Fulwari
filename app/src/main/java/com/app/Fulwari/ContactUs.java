@@ -28,7 +28,7 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
     Context mContext;
     ImageView btn_menu, btn_back;
     ConnectionDetector cd;
-    TextView tv_pagename;
+    TextView tv_pagename,tv_contactnperson;
     ContactUsModel aboutUs;
     ProgressDialog pDialog;
     CircularTextView tv_cartcount;
@@ -60,6 +60,8 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
                 finishAffinity();
             }
         });
+
+        tv_contactnperson= findViewById(R.id.tv_contactnperson);
         tv_pagename = findViewById(R.id.tv_pagename);
         btn_back = findViewById(R.id.btn_back);
         btn_menu = findViewById(R.id.btn_menu);
@@ -104,6 +106,7 @@ public class ContactUs extends AppCompatActivity implements View.OnClickListener
     }
 
     private void setData() {
+        tv_contactnperson.setText("Contact Person : " + aboutUs.getContactData().getContact_name());
         tv_address.setText("Address : " + aboutUs.getContactData().getAddress());
         tv_email.setText("Email : " + aboutUs.getContactData().getEmail());
         tv_contactno1.setText("Contact No. 1 : " + aboutUs.getContactData().getContactNo1());

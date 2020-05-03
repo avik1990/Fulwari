@@ -47,14 +47,14 @@
                 android:id="@+id/tv_brand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_below="@+id/tv_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textColor="@color/col_brandname"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -68,11 +68,12 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
+
             <Spinner
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_desc"
+                android:layout_below="@+id/tv_outofstock"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:visibility="gone" />
@@ -111,10 +112,23 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/tv_packsize"
+                android:id="@+id/tv_outofstock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_desc"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Out of Stock"
+                android:textColor="@color/caldroid_light_red"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_packsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_outofstock"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Pack Sizes"
@@ -174,16 +188,16 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_weight="1"
             android:background="@color/yellow"
-            android:textSize="@dimen/_14sdp"
             android:text="Back"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
 
         <RelativeLayout
-            android:background="@color/orange"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/orange">
 
             <Button
                 android:id="@+id/btn_add"
@@ -192,25 +206,25 @@
                 android:background="@color/orange"
                 android:text="Add To Basket"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
                 android:visibility="visible" />
 
             <LinearLayout
-                android:background="@color/orange"
                 android:id="@+id/ll_cart_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/ll_parent"
                 android:layout_centerHorizontal="true"
+                android:background="@color/orange"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:padding="@dimen/_12sdp"
                     android:id="@+id/iv_sub"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_40sdp"
+                    android:padding="@dimen/_12sdp"
                     android:src="@drawable/substract" />
 
                 <TextView
@@ -220,16 +234,16 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:text="1"
-                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
 
 
                 <ImageView
-                    android:padding="@dimen/_12sdp"
                     android:id="@+id/iv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_40sdp"
+                    android:padding="@dimen/_12sdp"
                     android:src="@drawable/plus_symbol" />
             </LinearLayout>
         </RelativeLayout>

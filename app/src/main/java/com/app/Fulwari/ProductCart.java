@@ -209,8 +209,13 @@ public class ProductCart extends AppCompatActivity implements View.OnClickListen
 
         tv_totalprice.setText("\u20B9" + " " + myCart.getPriceData().totalPrice);
         tv_servicetax.setText(myCart.getPriceData().total_quantity);
+        //code change on 03-05-2020
+        tv_taxpercentage.setVisibility(View.GONE);
 
-        if (Double.parseDouble(myCart.getPriceData().totalPrice) >= 150) {
+       // tv_taxpercentage.setVisibility(View.VISIBLE);
+        tv_delivery.setVisibility(View.VISIBLE);
+        tv_taxpercentage.setText("\u20B9" + " " + myCart.getPriceData().delivery_charge);
+        /*if (Double.parseDouble(myCart.getPriceData().totalPrice) >= 150) {
             tv_taxpercentage.setVisibility(View.GONE);
             tv_delivery.setVisibility(View.GONE);
         } else {
@@ -218,6 +223,8 @@ public class ProductCart extends AppCompatActivity implements View.OnClickListen
             tv_delivery.setVisibility(View.VISIBLE);
             tv_taxpercentage.setText("\u20B9" + " " + myCart.getPriceData().delivery_charge);
         }
+*/
+        ///////
 
         tv_grandtotdal.setText("\u20B9" + " " + myCart.getPriceData().grand_total);
         footer.setVisibility(View.VISIBLE);

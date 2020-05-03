@@ -45,7 +45,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="Contact Person : Santosh Ojha"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 

@@ -113,7 +113,9 @@ public class ProductList {
     }
 
     public class ProductDatum {
-
+        @SerializedName("stock")
+        @Expose
+        private String stock;
         @SerializedName("product_id")
         @Expose
         private String productId;
@@ -126,9 +128,9 @@ public class ProductList {
         @SerializedName("product_details")
         @Expose
         private String productDetails;
-      /*  @SerializedName("brand")
-        @Expose
-        private String brand;*/
+        /*  @SerializedName("brand")
+          @Expose
+          private String brand;*/
         @SerializedName("product_photo")
         @Expose
         private String productPhoto;
@@ -146,6 +148,15 @@ public class ProductList {
 //        public void setBrand(String brand) {
 //            this.brand = brand;
 //        }
+
+
+        public String getStock() {
+            return stock;
+        }
+
+        public void setStock(String stock) {
+            this.stock = stock;
+        }
 
         public boolean isClicked() {
             return isClicked;

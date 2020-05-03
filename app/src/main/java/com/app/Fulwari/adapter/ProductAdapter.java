@@ -75,9 +75,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         TextView et_qty;
         LinearLayout ll_mainbody;
         LinearLayout fl_layout;
+        TextView tv_outofstock;
+        RelativeLayout rlBtnLayout;
 
         public MyViewHolder(View view) {
             super(view);
+            rlBtnLayout = view.findViewById(R.id.rlBtnLayout);
+            tv_outofstock = view.findViewById(R.id.tv_outofstock);
             fl_layout = view.findViewById(R.id.fl_layout);
             iv_chefimage = view.findViewById(R.id.iv_chefimage);
             tv_productname = view.findViewById(R.id.tv_productname);
@@ -117,9 +121,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.progressbar.setVisibility(View.VISIBLE);
         holder.tv_position.setText(String.valueOf(position));
         holder.iv_chefimage.setVisibility(View.VISIBLE);
-        // holder.tv_productdetails.setText("dsfsdfsdfsdfsd");
 
-            holder.tv_productdetails.setVisibility(View.GONE);
+        holder.tv_productdetails.setVisibility(View.GONE);
 
 
         holder.ll_mainbody.setOnClickListener(new View.OnClickListener() {
@@ -166,22 +169,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                         }
                     });
         } catch (Exception e) {
+        }
 
+        if (c.getStock().equals("0")) {
+            holder.rlBtnLayout.setVisibility(View.GONE);
+            holder.tv_outofstock.setVisibility(View.VISIBLE);
+        } else {
+            holder.tv_outofstock.setVisibility(View.GONE);
+            holder.rlBtnLayout.setVisibility(View.VISIBLE);
         }
 
         if (c.getPackets().size() > 0) {
             holder.fl_layout.setVisibility(View.VISIBLE);
             ///if any item is checked from dropdown
             if (c.getSelectedPos() != -1) {
-                holder.sp_packets.setText(c.getPackets().get(c.getSelectedPos()).getPacketSize());
-                holder.tv_price_orginal.setText("\u20B9"+c.getPackets().get(c.getSelectedPos()).getOriginalPrice());
 
-                if (c.getPackets().get(c.getSelectedPos()).getDiscount()!=null &&!c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
+                holder.sp_packets.setText(c.getPackets().get(c.getSelectedPos()).getPacketSize());
+                holder.tv_price_orginal.setText("\u20B9" + c.getPackets().get(c.getSelectedPos()).getOriginalPrice());
+
+                if (c.getPackets().get(c.getSelectedPos()).getDiscount() != null &&
+                        !c.getPackets().get(c.getSelectedPos()).getDiscount().equals("0%")) {
                     holder.tv_dis_percent.setVisibility(View.VISIBLE);
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(c.getSelectedPos()).getDiscount() + " off");
                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(c.getSelectedPos()).getPrice());
+                    holder.tv_price_discount.setText("\u20B9" + c.getPackets().get(c.getSelectedPos()).getPrice());
                 } else {
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);
@@ -212,9 +224,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                                     holder.tv_price_orginal.setText(c.getPackets().get(pos).getOriginalPrice());
                                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(pos).getPrice());
+                                    holder.tv_price_discount.setText("\u20B9" + c.getPackets().get(pos).getPrice());
                                 } else {
-                                    holder.tv_price_orginal.setText("\u20B9"+c.getPackets().get(pos).getOriginalPrice());
+                                    holder.tv_price_orginal.setText("\u20B9" + c.getPackets().get(pos).getOriginalPrice());
                                     holder.tv_price_orginal.setPaintFlags(0);
                                     holder.tv_dis_percent.setVisibility(View.GONE);
                                     holder.tv_price_discount.setVisibility(View.GONE);
@@ -234,14 +246,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     holder.tv_price_orginal.setPaintFlags(holder.tv_price_orginal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                     holder.tv_dis_percent.setText(" " + c.getPackets().get(0).getDiscount());
                     holder.tv_price_discount.setVisibility(View.VISIBLE);
-                    holder.tv_price_discount.setText("\u20B9"+c.getPackets().get(0).getPrice());
+                    holder.tv_price_discount.setText("\u20B9" + c.getPackets().get(0).getPrice());
                 } else {
                     holder.tv_dis_percent.setVisibility(View.GONE);
                     holder.tv_price_orginal.setPaintFlags(0);
                     holder.tv_price_discount.setVisibility(View.GONE);
                 }
-
-
             }
         } else {
             holder.fl_layout.setVisibility(View.GONE);
@@ -266,7 +276,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     if (cd.isConnected()) {
                         AddtoCartServices("1");
                     }
-                }else {
+                } else {
                     Utility.showToastShort(mContext, "Please select pack size");
                 }
 
@@ -310,7 +320,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                             if (cd.isConnected()) {
                                 AddtoCartServices("0");
                             }
-                        }else{
+                        } else {
                             Utility.showToastShort(mContext, "Please select pack size");
                         }
                     }
@@ -347,7 +357,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                             if (cd.isConnected()) {
                                 AddtoCartServices("1");
                             }
-                        }else{
+                        } else {
                             Utility.showToastShort(mContext, "Please select pack size");
                         }
                     }
@@ -389,10 +399,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
-        Log.e("Log==",isCartAdd);
+        Log.e("Log==", isCartAdd);
 
         Call<BaseResponse> call = redditAPI.AddtoCartService(Preferences.get_userId(mContext),
-                Preferences.get_UniqueId(mContext), product_id, packet_id, "other","1", isCartAdd);
+                Preferences.get_UniqueId(mContext), product_id, packet_id, "other", "1", isCartAdd);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override
