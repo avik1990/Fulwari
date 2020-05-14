@@ -21,7 +21,6 @@
             android:padding="@dimen/_3sdp">
 
 
-
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
@@ -89,18 +88,32 @@
             android:text="FDFDF"
             android:textColor="@color/col_producttitle" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <Button
+                android:id="@+id/btnreview"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_toLeftOf="@+id/btnDetails"
+                android:background="@color/colorPrimaryDark"
+                android:text="Post Review"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="right"
-                android:layout_toLeftOf="@+id/btnCancel"
                 android:layout_marginRight="@dimen/_10sdp"
+                android:layout_toLeftOf="@+id/btnCancel"
                 android:background="@color/yellow"
                 android:text="Details"
                 android:textAllCaps="false"
@@ -115,10 +128,11 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@color/orange"
                 android:text="Cancel"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView

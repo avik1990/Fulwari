@@ -23,6 +23,7 @@ import com.app.Fulwari.model.Privacymodel;
 import com.app.Fulwari.model.ProductList;
 import com.app.Fulwari.model.ProductModel;
 import com.app.Fulwari.model.RegistrationResponse;
+import com.app.Fulwari.model.ReviewResponse;
 import com.app.Fulwari.model.SubCategoryDataResponse;
 import com.app.Fulwari.model.TermsConditionmodel;
 import com.app.Fulwari.model.ZipCodeVerify;
@@ -193,20 +194,22 @@ public interface ApiServices {
     Call<BaseResponse> PostFeedback(@Query("user_id") String user_id, @Query("name") String name, @Query("email") String email, @Query("phone") String phone
             , @Query("comment") String comment);
 
-
     @GET("service.php?action=search_result")
     Call<ProductList> Getsearch_food_list(@Query("category_id") String category_id, @Query("user_id") String user_id, @Query("unique_id") String unique_id, @Query("search_string") String search_string);
-
 
     @GET("service.php?action=search_result")
     Call<ProductList> Getsearch_food_list1(@Query("category_id") String category_id, @Query("user_id") String user_id, @Query("unique_id") String unique_id, @Query("subcategory_id") String subcat_id, @Query("search_string") String search_string);
 
-
     @GET("service.php?action=order_details")
     Call<MyOrdersDetailsModel> GetOrderedProductDetails(@Query("user_id") String user_id, @Query("order_id") String order_id);
 
-    @GET("service.php?action=cancel_order")
-    Call<BaseResponse> cancelOrder(@Query("user_id") String user_id, @Query("order_id") String order_id);
+    @GET("service.php?action=cancel_order_request")
+    Call<BaseResponse> cancelOrder(@Query("user_id") String user_id, @Query("order_id") String order_id,@Query("request_comment") String comments);
 
+    @GET("service.php?action=post_review")
+    Call<BaseResponse> reviewOrder(@Query("user_id") String user_id, @Query("order_id") String order_id,@Query("comment") String comments);
+
+    @GET("service.php?action=view_review")
+    Call<ReviewResponse> viewreviewOrder(@Query("user_id") String user_id, @Query("order_id") String order_id);
 
 }

@@ -62,6 +62,29 @@ public class MyOrders {
         @Expose
         private String deliveryStatus;
 
+        @SerializedName("suggestion_posted")
+        @Expose
+        private String suggestion_posted;
+        @SerializedName("cancel_request_sent")
+        @Expose
+        private String cancel_request_sent;
+
+        public String getSuggestion_posted() {
+            return suggestion_posted;
+        }
+
+        public void setSuggestion_posted(String suggestion_posted) {
+            this.suggestion_posted = suggestion_posted;
+        }
+
+        public String getCancel_request_sent() {
+            return cancel_request_sent;
+        }
+
+        public void setCancel_request_sent(String cancel_request_sent) {
+            this.cancel_request_sent = cancel_request_sent;
+        }
+
         public String getOrderId() {
             return orderId;
         }

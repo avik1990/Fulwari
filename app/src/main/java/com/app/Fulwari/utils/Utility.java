@@ -252,6 +252,13 @@ public class Utility {
         toast.show();
     }
 
+
+    public static void showToastLong(Context mContext, String msg) {
+        Toast toast = Toast.makeText(mContext, msg, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }

@@ -1,22 +1,27 @@
 package com.app.Fulwari.adapter;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.Fulwari.MyOrderActivity;
 import com.app.Fulwari.ProductOrderDetails;
 import com.app.Fulwari.R;
 import com.app.Fulwari.model.BaseResponse;
 import com.app.Fulwari.model.MyOrders;
+import com.app.Fulwari.model.ReviewResponse;
 import com.app.Fulwari.retrofit.api.ApiServices;
 import com.app.Fulwari.utils.ConnectionDetector;
 import com.app.Fulwari.utils.Preferences;
@@ -40,10 +45,12 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
     TextView tv_date;
     ProgressDialog pDialog;
     BaseResponse baseResponse;
+    ReviewResponse reviewResponse;
+    String stComments;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_date, tv_totalitems, tv_totalprice, tv_paymentstatus, tv_deliverystatus, tv_orderid;
-        Button btnDetails, btnCancel;
+        Button btnDetails, btnCancel, btnreview;
 
         public MyViewHolder(View view) {
             super(view);
@@ -56,6 +63,7 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
             tv_date = view.findViewById(R.id.tv_date);
             btnDetails = view.findViewById(R.id.btnDetails);
             btnCancel = view.findViewById(R.id.btnCancel);
+            btnreview = view.findViewById(R.id.btnreview);
         }
     }
 
@@ -102,41 +110,69 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
             }
         });
 
-        holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+        if (movie.getCancel_request_sent().equalsIgnoreCase("No")) {
+            holder.btnCancel.setEnabled(true);
+            holder.btnCancel.setVisibility(View.VISIBLE);
+            holder.btnCancel.setText(" Cancel ");
+        } else if (movie.getCancel_request_sent().equalsIgnoreCase("Yes")) {
+            holder.btnCancel.setVisibility(View.VISIBLE);
+            holder.btnCancel.setText(" Cancel Request Sent ");
+            holder.btnCancel.setEnabled(false);
+        }else{
+            holder.btnCancel.setVisibility(View.GONE);
+        }
 
+        /*if (movie.getSuggestion_posted() == null) {
+            holder.btnreview.setText("Review");
+            postReview(holder);
+        } else*/
+
+        if (movie.getSuggestion_posted().equalsIgnoreCase("No")) {
+            postReview(holder);
+            holder.btnreview.setText("Post Review");
+        } else if (movie.getSuggestion_posted().equalsIgnoreCase("Yes")) {
+            holder.btnreview.setText(" View Review ");
+            holder.btnreview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewReview(holder, holder.tv_orderid.getText().toString().replace("Order Id :", "").trim());
+                }
+            });
+        }
+
+
+        holder.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("Cancel Order");
-                builder.setMessage("Are you sure to cancel the order?");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        cancelOrder(holder.tv_orderid.getText().toString().replace("Order Id :", "").trim());
+                android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(mContext);
+                LayoutInflater inflater = ((MyOrderActivity) mContext).getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.ordercancel_dialog, null);
+                dialogBuilder.setView(dialogView);
+                final EditText edt = dialogView.findViewById(R.id.edit1);
+                dialogBuilder.setTitle("Cancel Reason");
+                //dialogBuilder.setMessage("Enter text below");
+                dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        stComments = edt.getText().toString().trim();
+                        if (stComments.isEmpty()) {
+                            Toast.makeText(mContext, "Please Enter Comment", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        cancelOrder(holder.tv_orderid.getText().toString().replace("Order Id :", "").trim(), stComments);
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                dialogBuilder.setNegativeButton("Later", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
                     }
                 });
-                builder.show();
-
+                android.app.AlertDialog b = dialogBuilder.create();
+                b.show();
             }
         });
-
     }
 
-
-    @Override
-    public int getItemCount() {
-        return moviesList.size();
-    }
-
-
-    private void cancelOrder(String OrderID) {
+    private void viewReview(final MyViewHolder holder, String orderId) {
         pDialog.show();
         String BASE_URL = mContext.getResources().getString(R.string.base_url);
         Retrofit retrofit = new Retrofit.Builder()
@@ -146,7 +182,97 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
 
         ApiServices redditAPI;
         redditAPI = retrofit.create(ApiServices.class);
-        Call<BaseResponse> call = redditAPI.cancelOrder(Preferences.get_userId(mContext), OrderID);
+        Call<ReviewResponse> call = redditAPI.viewreviewOrder(Preferences.get_userId(mContext), orderId);
+        call.enqueue(new Callback<ReviewResponse>() {
+
+            @Override
+            public void onResponse(Call<ReviewResponse> call, retrofit2.Response<ReviewResponse> response) {
+                Log.d("ResponseOTP", "" + response);
+                if (response.isSuccessful()) {
+                    //Log.d("Response",response.body().toString());
+                    reviewResponse = response.body();
+                    if (reviewResponse.getReviewData().getAck() == 1) {
+                        // Utility.showToastShort(mContext, baseResponse.getMsg());
+                        android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(mContext);
+                        LayoutInflater inflater = ((MyOrderActivity) mContext).getLayoutInflater();
+                        final View dialogView = inflater.inflate(R.layout.orderviewreview_dialog, null);
+                        dialogBuilder.setView(dialogView);
+                        final TextView edt = dialogView.findViewById(R.id.edit1);
+                        dialogBuilder.setTitle("Your Review");
+                        edt.setText(reviewResponse.getReviewData().getComment());
+                        //dialogBuilder.setMessage("Enter text below");
+                        dialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        });
+                        android.app.AlertDialog b = dialogBuilder.create();
+                        b.show();
+                    } else {
+                        Utility.showToastShort(mContext, reviewResponse.getReviewData().getMsg());
+                    }
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ReviewResponse> call, Throwable t) {
+                pDialog.dismiss();
+            }
+        });
+
+    }
+
+    private void postReview(final MyViewHolder holder) {
+        holder.btnreview.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(mContext);
+                LayoutInflater inflater = ((MyOrderActivity) mContext).getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.orderreview_dialog, null);
+                dialogBuilder.setView(dialogView);
+                final EditText edt = dialogView.findViewById(R.id.edit1);
+                dialogBuilder.setTitle("Review Your Order");
+                //dialogBuilder.setMessage("Enter text below");
+                dialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        stComments = edt.getText().toString().trim();
+                        if (stComments.isEmpty()) {
+                            Toast.makeText(mContext, "Please Enter Review", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        //Toast.makeText(mContext, holder.tv_orderid.getText().toString().replace("Order Id :", "").trim(), Toast.LENGTH_SHORT).show();
+                        ReviewOrder(holder.tv_orderid.getText().toString().replace("Order Id :", "").trim(), stComments);
+                    }
+                });
+                dialogBuilder.setNegativeButton("Later", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
+                android.app.AlertDialog b = dialogBuilder.create();
+                b.show();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return moviesList.size();
+    }
+
+    private void cancelOrder(String OrderID, String comments) {
+        pDialog.show();
+        String BASE_URL = mContext.getResources().getString(R.string.base_url);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiServices redditAPI;
+        redditAPI = retrofit.create(ApiServices.class);
+        Call<BaseResponse> call = redditAPI.cancelOrder(Preferences.get_userId(mContext), OrderID, comments);
         call.enqueue(new Callback<BaseResponse>() {
 
             @Override
@@ -156,10 +282,11 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
                     //Log.d("Response",response.body().toString());
                     baseResponse = response.body();
                     if (baseResponse.getAck() == 1) {
+                        stComments = "";
                         Utility.showToastShort(mContext, baseResponse.getMsg());
                         ((MyOrderActivity) mContext).LoadCartProduct();
                     } else {
-                        Utility.showToastShort(mContext, "Please Try Again");
+                        Utility.showToastLong(mContext, baseResponse.getMsg());
                     }
                 }
                 pDialog.dismiss();
@@ -172,4 +299,40 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.MyView
         });
     }
 
+    private void ReviewOrder(String OrderID, String comments) {
+        pDialog.show();
+        String BASE_URL = mContext.getResources().getString(R.string.base_url);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiServices redditAPI;
+        redditAPI = retrofit.create(ApiServices.class);
+        Call<BaseResponse> call = redditAPI.reviewOrder(Preferences.get_userId(mContext), OrderID, comments);
+        call.enqueue(new Callback<BaseResponse>() {
+
+            @Override
+            public void onResponse(Call<BaseResponse> call, retrofit2.Response<BaseResponse> response) {
+                Log.d("ResponseOTP", "" + response);
+                if (response.isSuccessful()) {
+                    //Log.d("Response",response.body().toString());
+                    baseResponse = response.body();
+                    if (baseResponse.getAck() == 1) {
+                        stComments = "";
+                        Utility.showToastShort(mContext, baseResponse.getMsg());
+                        ((MyOrderActivity) mContext).LoadCartProduct();
+                    } else {
+                        Utility.showToastShort(mContext, baseResponse.getMsg());
+                    }
+                }
+                pDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                pDialog.dismiss();
+            }
+        });
+    }
 }
